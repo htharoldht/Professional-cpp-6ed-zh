@@ -2,7 +2,7 @@
 时间段是两个时间点之间的间隔，由 duration 类模板表示，该模板存储了时间戳的数量和时间戳周期。时间戳周期是两个时间戳之间的时间，以秒为单位，并且作为编译时的有理数常量表示，所以可以是秒的分数(上一节中进行了讨论)。duration 模板接受两个模板类型参数：
 
 \begin{cpp}
-template <class Rep, class Period = ratio<1>> class duration {...}
+template <class Rep, class Period = ratio<1>> class duration {..}
 \end{cpp}
 
 第一个模板参数Rep，是存储时间戳数量的变量的类型，是一个算术类型，例如 long、double 等。第二个模板参数Period，是有理常数，代表时间戳的周期。如果没有指定时间戳周期，将使用默认值 ratio<1> ，这表示时间周期为一秒钟。
@@ -63,7 +63,7 @@ duration<double, ratio<1, 60>> d3;
 duration<long long, milli> d4;
 \end{cpp}
 
-\mySubsubsection{22.2.1.}{时间段转换和示例}
+\mySubsubsection{22.2.1}{时间段转换和示例}
 
 来了解一下时间段如何工作。以下示例演示了时间段的几种方式，展示了如何定义，如何执行算术运算，如何将它们打印到屏幕上，以及如何将一个具有不同时间周期的时间段，转换为另一个时间段：
 
@@ -163,7 +163,7 @@ duration<long, ratio<60>> d9 { 10 }; // minutes
 duration<long> d10 { d9 }; // seconds
 \end{cpp}
 
-\mySubsubsection{22.2.2.}{预定义时间段}
+\mySubsubsection{22.2.2}{预定义时间段}
 
 库在 std::chrono 命名空间中提供了以下标准时间段类型：
 
@@ -221,7 +221,7 @@ minutes m { 2 };
 seconds s { m };
 \end{cpp}
 
-\mySubsubsection{22.2.3.}{标准字面量}
+\mySubsubsection{22.2.3}{标准字面量}
 
 可以使用标准字面量 h、min、s、ms、us 和 ns 来创建时间段。这些定义在 std::literals::chrono\_literals 命名空间中，但就像在第 2 章中讨论的标准字符串字面量一样，chrono\_literals 命名空间是一个内联命名空间，可以通过以下 using 指令使 chrono 字面量可用：
 
@@ -240,6 +240,6 @@ using namespace std::chrono;
 auto myDuration { 42min }; // 42 minutes
 \end{cpp}
 
-\mySubsubsection{22.2.4.}{hh\_mm\_ss}
+\mySubsubsection{22.2.4}{hh\_mm\_ss}
 
 chrono 库提供了 hh\_mm\_ss 类模板，该模板接受一个时间段，并将给定的时间段分割为小时、分钟、秒和亚秒。它有 getter 方法 hours()、minutes()、seconds() 和 subseconds() 来检索数据，返回非负值。如果时间段是负的，is\_negative() 成员函数则返回 true，否则返回 false。在本章末尾的一个练习中会使用到 hh\_mm\_ss 类模板。

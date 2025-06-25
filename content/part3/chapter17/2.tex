@@ -15,7 +15,7 @@ ostreambuf\_iterator: 写入 basic\_streambuf 的输出迭代器
 istreambuf\_iterator:  从 basic\_streambuf 读取的输入迭代器
 \end{itemize}
 
-\mySubsubsection{17.2.1.}{输出流迭代器: ostream\_iterator}
+\mySubsubsection{17.2.1}{输出流迭代器: ostream\_iterator}
 
 ostream\_iterator 是一个输出流迭代器，是一个类模板，接受元素类型作为模板类型参数。构造函数接受一个输出流和一个分隔字符串，用于在每个元素之后写入流。ostream\_iterator 类使用 operator<{}< 写入元素。
 
@@ -56,7 +56,7 @@ println("");
 1 2 3 4 5 6 7 8 9 10
 \end{shell}
 
-\mySubsubsection{17.2.2.}{输入流迭代器: istream\_iterator}
+\mySubsubsection{17.2.2}{输入流迭代器: istream\_iterator}
 
 可以使用输入流迭代器 istream\_iterator 从输入流中读取值，利用迭代器抽象。它是一个类模板，接受元素类型作为模板类型参数，其构造函数接受一个输入流作为参数。元素通过 operator>{}> 读取，可以将 istream\_iterator 用作算法和容器成员函数的源。
 
@@ -84,7 +84,7 @@ println("Sum: {}", result);
 \end{cpp}
 
 
-\mySubsubsection{17.2.3.}{输入流迭代器: istreambuf\_iterator}
+\mySubsubsection{17.2.3}{输入流迭代器: istreambuf\_iterator}
 
 istreambuf\_iterator 输入流迭代器是用单个语句，读取整个文件的内容。默认构造的 istreambuf\_iterator 表示结束迭代器：
 

@@ -1,7 +1,7 @@
 
 以下程序基于本章早些时候使用的员工数据库示例。这次，将得到一个完全功能的C++程序，该程序使用了本章讨论的许多特性，包括使用类、异常、流、vector、命名空间、引用，以及其他语言特性。
 
-\mySubsubsection{1.2.1.}{员工档案系统}
+\mySubsubsection{1.2.1}{员工档案系统}
 
 接下来实现一个程序来管理公司的员工档案:
 
@@ -24,7 +24,7 @@
 
 该程序的设计将代码分为三个部分。Employee类封装了描述单个员工的个人信息，Database类管理公司的所有员工。最后，在一个单独的UserInterface文件提供了程序的交互性。
 
-\mySubsubsection{1.2.2.}{Employee类}
+\mySubsubsection{1.2.2}{Employee类}
 
 Employee类维护雇员的所有信息，成员函数提供了查询和更改该信息的方法。Employee也知道如何在控制台上进行输出，还存在成员函数来调整员工的工资和雇佣状态。
 
@@ -206,7 +206,7 @@ int main()
 
 另一种，并且更好的测试单个类的方法是单元测试。单元测试是用于测试特定功能的小代码块，其会保留在代码库中。所有的单元测试都会频繁执行，由构建系统自动执行。好处是，若对现有功能进行了一些更改，单元测试会立即提示，是否破坏了某项功能。
 
-\mySubsubsection{1.2.3.}{Database类}
+\mySubsubsection{1.2.3}{Database类}
 
 接下来实现Database类，使用标准库中的std::vector类来存储Employee对象。
 
@@ -357,7 +357,7 @@ int main()
 }
 \end{cpp}
 
-\mySubsubsection{1.2.4.}{用户接口}
+\mySubsubsection{1.2.4}{用户接口}
 
 该程序的最后一部分是一个基于菜单的用户界面，用户可以轻松地使用员工数据库。
 
@@ -491,7 +491,7 @@ void doPromote(Database& db)
 }
 \end{cpp}
 
-\mySubsubsection{1.2.5.}{评估项目}
+\mySubsubsection{1.2.5}{评估项目}
 
 程序涵盖了从简单到更复杂的一系列主题，有多种方式可以扩展这个程序。用户界面并没有暴露出Database和Employee类的所有功能，可以修改UI以包括这些特性。还可以尝试实现这两个类的其他功能，这将是一个练习本章所学知识的好方法。
 

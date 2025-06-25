@@ -1,7 +1,7 @@
 
 因为存储元素的序列，vector、deque、list、forward\_list和array称为顺序容器。了解顺序容器的最佳方式是直接通过vector示例来学习，这应该是首选容器。下一节将详细描述vector容器，然后简要讨论deque、list、forward\_list和array。熟悉了顺序容器，它们之间的切换就很简单了。
 
-\mySubsubsection{18.2.1.}{vector}
+\mySubsubsection{18.2.1}{vector}
 
 标准库的vector容器类似于标准C语言风格的数组：元素存储在连续的内存中，每个元素都有自己的“槽”。可以对vector进行索引，也可以向末尾添加新元素或在其他任何位置插入。向vector中插入和删除元素通常具有线性时间复杂度，这些操作实际上在vector末尾以摊销的常数时间运行，这在本章后面的一节中会进行介绍。随机访问单个元素的复杂度是常数；有关算法复杂性的讨论，请参见第4章。
 
@@ -991,7 +991,7 @@ Process 3 performing work during time slice.
 Process 1 performing work during time slice.
 \end{shell}
 
-\mySubsubsection{18.2.2.}{vector<bool>}
+\mySubsubsection{18.2.2}{vector<bool>}
 
 C++标准要求为bool类型提供一个vector的偏特化，目的是通过“打包”布尔值来优化空间分配。bool要么是true，要么是false，因此可以用单个位来表示，这个位可以精确地取两个值。C++没有一种原生类型可以存储恰好一个位。一些编译器使用与char大小相同的类型来表示布尔值；其他编译器使用int。vector<bool>以单个位存储“布尔数组”，以节省空间。
 
@@ -1009,7 +1009,7 @@ C++标准要求为bool类型提供一个vector的偏特化，目的是通过“�
 
 通过打包bool节省的少量空间不值得付出什么，但访问和修改vector<bool>中的元素要比vector<int>慢得多。许多C++专家建议避免使用vector<bool>，而选择bitset。如果确实需要一个动态大小的位字段，只需使用vector<std::int\_fast8\_t>或vector<unsigned char>。std::int\_fast8\_t类型定义在<cstdint>中，是一种有符号整数类型，编译器必须使用至少8位的最快整数类型。
 
-\mySubsubsection{18.2.3.}{deque}
+\mySubsubsection{18.2.3}{deque}
 
 deque（双端队列的缩写）与vector几乎相同，但使用频率要低得多，在<deque>中定义。主要区别如下：
 
@@ -1045,7 +1045,7 @@ deque不通过reserve()或capacity()公开其内存管理方案。
 
 与vector相比，deque很少使用，因此不再进一步讨论。有关所有支持的成员函数的详细列表，请参阅标准库手册。
 
-\mySubsubsection{18.2.4.}{list}
+\mySubsubsection{18.2.4}{list}
 
 标准库中的list类模板，定义在 <list> 中，是一个标准的双向链表，支持在列表的任何位置进行常数时间的元素插入和删除，但提供对单个元素的缓慢（线性）访问。实际上，list不提供像 operator[] 这样的随机访问操作，只能通过迭代器访问单个元素。
 
@@ -1202,7 +1202,7 @@ list<string> getTotalEnrollment(const vector<list<string>>& courseStudents,
 此示例展示了列表特定算法的使用。通常vector比list更快，所以解决学生注册问题的推荐方案是仅使用vector，并结合泛型标准库算法，这些将在第20章中进行介绍。
 \end{myNotic}
 
-\mySubsubsection{18.2.5.}{forward\_list}
+\mySubsubsection{18.2.5}{forward\_list}
 
 forward\_list，定义在<forward\_list>中，与list类似，但它是单向链表。forward\_list只支持前向迭代，与list相比，范围需要以不同的方式指定。如果想对列表进行，需要访问感兴趣元素的前一个元素。由于forward\_list没有支持反向的迭代器，无法轻松获取前一个元素，所以将修改的范围内（例如，提供给erase()和splice()的范围）必须从开始处打开。之前讨论的begin()函数返回指向第一个元素的迭代器，只能用于构造从开始处闭合的范围，所以forward\_list类提供了一个before\_begin()成员函数，其返回一个指向列表开始处之前虚拟元素的迭代器。不能解引用这个迭代器，因为它指向无效的数据。将这个迭代器增加1使其与begin()返回的迭代器相同，所以可以用于构造一个从开始处打开的范围。
 
@@ -1300,7 +1300,7 @@ println("{:n}", list1);
 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
 \end{shell}
 
-\mySubsubsection{18.2.6.}{array}
+\mySubsubsection{18.2.6}{array}
 
 定义在 <array> 中，与 vector 类似，只是它是固定大小的，不能改变大小。固定大小的目的是允许数组在栈上分配，而不是像 vector 那样总是要求访问堆区。
 

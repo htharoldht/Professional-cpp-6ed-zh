@@ -44,7 +44,7 @@ debugOut("String %s and int %d\n", "hello", 5);
 debugOut("Many ints: %d, %d, %d, %d, %d\n", 1, 2, 3, 4, 5);
 \end{cpp}
 
-\mySubsubsection{11.7.1.}{访问参数}
+\mySubsubsection{11.7.1}{访问参数}
 
 如果想要自己访问实际的参数，可以使用va\_arg()来实现。它接受一个va\_list作为第一个参数，以及要解释的实参类型，但除非提供一种显式的方法，否则无法知道实参列表的末尾，可以使第一个参数成为实参数量的计数。或者，在有一组指针的情况下，可能要求最后一个指针为nullptr。有很多方法，但对开发者来说都很麻烦。
 
@@ -70,7 +70,7 @@ void printInts(unsigned num, ...)
 printInts(5, 5, 4, 3, 2, 1);
 \end{cpp}
 
-\mySubsubsection{11.7.2.}{为什么不使用C风格的可变长度实参列表}
+\mySubsubsection{11.7.2}{为什么不使用C风格的可变长度实参列表}
 
 问C风格的可变长度实参列表并不十分安全。从printInts()函数中看，存在几个风险。
 

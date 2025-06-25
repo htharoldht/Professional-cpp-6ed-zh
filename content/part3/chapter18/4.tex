@@ -1,7 +1,7 @@
 
 除了标准顺序容器之外，标准库还提供了三个容器适配器：queue、priority\_queue和stack。这些适配器都是顺序容器的包装器，允许交换底层容器，而无需更改其余代码。适配器的目的是简化接口，并提供仅适用于stack、queue或priority\_queue抽象的适当功能。这些适配器不提供对底层容器的访问，因此是第4章中解释的数据隐藏原则的示例。适配器不支持同时擦除多个元素的功能，也不提供迭代器，不能使用它们进行基于范围的for循环，也不能使用第20章中讨论的标准迭代器算法。但从C++23开始，std::format()和print()函数支持格式化和打印这些容器适配器的内容。
 
-\mySubsubsection{18.4.1.}{queue}
+\mySubsubsection{18.4.1}{queue}
 
 queue容器适配器，定义在<queue>中，提供标准的先进先出语义。通常，它是一个类模板：
 
@@ -119,7 +119,7 @@ Processing packet 3
 Queue is empty.
 \end{shell}
 
-\mySubsubsection{18.4.2.}{priority\_queue}
+\mySubsubsection{18.4.2}{priority\_queue}
 
 优先队列是一种保持其元素排序的队列。与严格的先进先出（FIFO）排序不同，优先队列在给定时间队列头部的元素是优先级最高的元素。这个元素可能是队列中最老的，也可能是最近的。如果两个元素具有相同的优先级，它们在队列中的相对顺序未定义。
 
@@ -231,7 +231,7 @@ Incorrect entry from user (priority 1)
 Finished processing errors
 \end{shell}
 
-\mySubsubsection{18.4.3.}{stack}
+\mySubsubsection{18.4.3}{stack}
 
 stack与queue几乎相同，不同之处在于提供的是先进后出（FILO）语义，也称为后进先出（LIFO），而不是FIFO。定义在<stack>中，模板定义如下所示：
 

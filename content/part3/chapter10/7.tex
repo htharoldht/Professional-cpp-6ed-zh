@@ -5,7 +5,7 @@ C++ 提供五种特定的类型转换：const\_cast(), static\_cast(), reinterpr
 
 旧式的 C 风格类型转换，如 (int)myFloat，在 C++ 中仍然有效，并且在新代码库中仍然广泛使用。C 风格类型转换涵盖了除 bit\_cast() 之外的所有 C++ 类型转换，因此更易出错，可能会得到意外的结果。我强烈建议只在新的代码中使用 C++ 风格的类型转换，这样会更安全。
 
-\mySubsubsection{10.7.1.}{static\_cast()}
+\mySubsubsection{10.7.1}{static\_cast()}
 
 可以使用static\_cast()执行显式转换。例如，编写了一个算术表达式，需要将int转换为double以避免整数除法，请使用static\_cast()。这个例子中，因为这会使两个操作数中的一个成为double，所以只需要对i使用static\_cast()，确保C++执行浮点除法。
 
@@ -59,7 +59,7 @@ Derived* d { static_cast<Derived*>(b) };
 
 static\_cast()并不是万能的，不能将一种类型的指针static\_cast()到另一种不相关的类型指针。如果没有可用的转换构造函数，不能直接将一个类型的对象static\_cast()到另一个类型的对象。不能将const类型static\_cast()到非const类型，不能将指针static\_cast()到整数，只能做符合C++类型规则的事情。
 
-\mySubsubsection{10.7.2.}{reinterpret\_cast()}
+\mySubsubsection{10.7.2}{reinterpret\_cast()}
 
 reinterpret\_cast()比static\_cast()更加强大，也更不安全。可以使用它执行一些技术上不被C++类型规则允许，但可能在某些情况下对开发者有意义的转换。可以使用reinterpret\_cast()将一个类型的引用转换为另一个不相关类型的引用，也可以将一个指针类型转换为其他指针类型，即使它们在继承层次结构中并不相关。将指针转换为void可以隐式进行，不需要显式转换。要将void转换回正确类型的指针，static\_cast()就足够了。void指针只是指向内存中某个位置的一个指针，没有与void指针关联的类型信息。这里有一些例子：
 
@@ -95,7 +95,7 @@ reinterpret\_cast()并不是万能的，对可以强制转换的内容有很多�
 还可以使用reinterpret\_cast()将指针转换为整型类型，然后转换回来，但只能将指针转换为足够大的整型类型来容纳它。例如，尝试使用reinterpret\_cast()将64位指针转换为32位整数将导致编译错误。
 \end{myWarning}
 
-\mySubsubsection{10.7.3.}{dynamic\_cast()}
+\mySubsubsection{10.7.3}{dynamic\_cast()}
 
 dynamic\_cast()在继承层次结构中提供了运行时检查，可以使用它来转换指针或引用。动态强制转换在运行时检查基础对象的运行时类型信息。如果转换没有意义，动态强制转换将返回一个空指针（对于指针版本）或抛出一个std::bad\_cast异常（对于引用版本）。
 
@@ -145,7 +145,7 @@ try {
 error C2683: 'dynamic_cast' : 'Base' is not a polymorphic type.
 \end{shell}
 
-\mySubsubsection{10.7.4.}{std::bit\_cast()}
+\mySubsubsection{10.7.4}{std::bit\_cast()}
 
 std::bit\_cast() 定义在<bit>中，是唯一属于标准库的类型转换；其他类型转换是 C++ 语言的一部分。bit\_cast() 类似于 reinterpret\_cast()，但它创建一个给定目标类型的新的对象，并将源对象的位复制到这个新对象中，有效地将源对象的位解释为目标对象的位序列。bit\_cast() 要求源对象和目标对象的尺寸相同，并且两者都是简单可复制的。
 
@@ -163,7 +163,7 @@ if (bit_cast<float>(asUint) == asFloat) { println("Roundtrip success."); }
 
 bit\_cast() 的一个用例是用于二进制 I/O 的简单可复制类型，可以将这类类型的单个字节写入文件。将文件重新读取到内存时，可以使用 bit\_cast() 来正确解释从文件读取的字节。
 
-\mySubsubsection{10.7.5.}{总结}
+\mySubsubsection{10.7.5}{总结}
 
 下表总结了在不同场景下，应该如何使用的强制转换。
 

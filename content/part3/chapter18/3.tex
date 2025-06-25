@@ -1,7 +1,7 @@
 
 C++标准库提供了两种顺序视图：std::span和std::mdspan，后者是C++23中新增的。span提供了一个一维的、非拥有的视图，用于连续数据序列。mdspan泛化了这一概念，允许创建多维的、非拥有的视图，用于连续数据序列。
 
-\mySubsubsection{18.3.1.}{span}
+\mySubsubsection{18.3.1}{span}
 
 假设有一个用于打印vector内容的函数：
 
@@ -96,7 +96,7 @@ void print(span<const int> values)
 编写接受const vector<T>\&的函数时，可以考虑改为接受span<const T>，这样函数就可以处理来自vector、array、C风格数组等数据序列的视图和子视图。如果函数接受vector<T>\&，除非函数需要向vector中添加或删除元素，否则可以考虑使用span<T>。
 \end{myNotic}
 
-\mySubsubsection{18.3.2.}{mdspan}
+\mySubsubsection{18.3.2}{mdspan}
 
 \CXXTwentythreeLogo{-40}{15}
 

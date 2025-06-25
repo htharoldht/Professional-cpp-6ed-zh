@@ -59,7 +59,7 @@ int main(int argc, char* argv[])
 }
 \end{cpp}
 
-\mySubsubsection{13.4.1.}{文本模式和二进制模式}
+\mySubsubsection{13.4.1}{文本模式和二进制模式}
 
 默认情况下，文件流以文本模式打开。如果指定了ios\_base::binary，则文件以二进制模式打开。
 
@@ -67,7 +67,7 @@ int main(int argc, char* argv[])
 
 文本模式下，有些隐藏的转换正在发生：写入或从文件读取的每行都以\verb|\|n结尾，文件中行的结束如何编码取决于操作系统。在Windows上，一行以\verb|\|r\verb|\|n而不是单个\verb|\|n字符结束。因此，当文件以文本模式打开时，写入文件的以\verb|\|n结尾的行，底层实现会自动将\verb|\|n转换为\verb|\|r\verb|\|n后再写入文件。类似地，从文件中读取一行时，从文件中读取的\verb|\|r\verb|\|n会自动转换回\verb|\|n后再返回。
 
-\mySubsubsection{13.4.2.}{使用seek()和tell()跳转}
+\mySubsubsection{13.4.2}{使用seek()和tell()跳转}
 
 seekx()和tellx()成员函数存在于所有输入和输出流中，seekx()成员函数允许在输入或输出流中的任意位置移动。seekx()有几种形式，对于输入流，成员函数为seekg()（g代表get），对于输出流，为seekp()（p代表put）。可能会想知道为什么既有seekg()又有seekp()成员函数，而不是一个seek()成员函数。原因是，有既是输入又是输出的流，例如文件流。这种情况下，流需要记住一个读取位置和一个单独的写入位置，这也称作双向I/O，本章后面将详细介绍。
 
@@ -197,7 +197,7 @@ if (testVal == expected) {
 }
 \end{cpp}
 
-\mySubsubsection{13.4.3.}{链接流}
+\mySubsubsection{13.4.3}{链接流}
 
 可以在输入流和输出流之间建立链接，以实现访问时自动刷新的行为。换句话说，当从输入流请求数据时，其链接的输出流将自动刷新。这种行为对所有流都可用，但对于可能相互依赖的文件流尤其有用。
 
@@ -230,7 +230,7 @@ outFile.tie(&anotherOutputFile);
 
 这种流链接的一个例子是cout和cin之间的链接。每当尝试从cin输入数据时，cout会自动刷新。cerr和cout之间也有链接，所以cerr的输出都会刷新cout。另一方面，clog流没有链接到cout。这些流宽字符版本之间也有类似的链接。
 
-\mySubsubsection{13.4.4.}{读取整个文件}
+\mySubsubsection{13.4.4}{读取整个文件}
 
 可以使用getline()读取整个文件的内容，通过指定\verb|\|0作为分隔符。只要文件内容中不包含\verb|\|0字符，这就可以工作：
 

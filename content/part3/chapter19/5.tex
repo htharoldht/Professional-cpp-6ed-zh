@@ -1,7 +1,7 @@
 
 编写一个函数或函数对象类，给它一个不与其他名称冲突的名字，然后使用这个名字对于一个本质上简单的概念来说是一个相当大的开销。使用匿名（未命名的）函数，即由 Lambda 表达式表示的函数，可以带来很大的便利。Lambda 表达式允许内联编写匿名函数，语法更简单，使代码更紧凑、更易读。Lambda 表达式对于定义小型的回调非常有用，这些回调可以内联传递给其他函数，而不是在其他地方定义一个完整的函数对象，并在其重载的函数调用操作符中实现回调逻辑。所有的逻辑都保留在一个地方，更容易理解和维护。Lambda 表达式可以接受参数、返回值、可以模板化、可以访问其作用域内的变量，无论是按值还是按引用，并且还有更多的灵活性。先让我们逐步了解 Lambda 表达式的语法。
 
-\mySubsubsection{19.5.1.}{语法}
+\mySubsubsection{19.5.1}{语法}
 
 从一个简单的 Lambda 表达式开始。以下示例定义了一个 Lambda 表达式，只是将一个字符串写入控制台。Lambda 表达式以方括号 [] 开始，称为 Lambda 引入者，后面跟着花括号 \{\}，包含 Lambda 表达式的函数体。Lambda 表达式赋值给基本 Lambda auto类型变量。第二行使用正常的函数调用语法执行 Lambda 表达式。
 
@@ -297,7 +297,7 @@ Requires子句 1 和 2: 指定Lambda闭包的函数调用操作符的模板类�
 对于不捕获内容的 Lambda 表达式，编译器会自动提供一种转换操作符，将 Lambda 表达式转换为函数指针。这样的 Lambda 表达式，可以传递给接受函数指针作为其参数的函数。
 \end{myNotic}
 
-\mySubsubsection{19.5.2.}{Lambda表达式作为参数}
+\mySubsubsection{19.5.2}{Lambda表达式作为参数}
 
 Lambda 表达式可以通过两种方式作为函数参数传递。一种选项是将函数参数类型设置为 std::function，其签名与 Lambda 表达式匹配。另一种选项是使用模板类型参数。
 
@@ -311,7 +311,7 @@ findMatches(values1, values2,
     printMatch);
 \end{cpp}
 
-\mySubsubsection{19.5.3.}{泛型 Lambda 表达式}
+\mySubsubsection{19.5.3}{泛型 Lambda 表达式}
 
 可以使用 auto 类型推导为 Lambda 表达式的参数，而不是显式指定具体的类型。要为参数指定 auto 类型推导，只需将类型指定为 auto、auto\& 或 auto*。类型推导规则与模板参数推导相同。
 
@@ -341,7 +341,7 @@ class CompilerGeneratedName
 
 如果 findMatches() 函数修改以支持整数切片，以及其他类型的切片，则 areEqual 泛型 Lambda 表达式仍然可以不进行修改地使用。
 
-\mySubsubsection{19.5.4.}{Lambda的捕获表达式}
+\mySubsubsection{19.5.4}{Lambda的捕获表达式}
 
 Lambda 捕获表达式允许用表达式初始化捕获变量，可以用来在 Lambda 表达式中引入不是从外层作用域捕获的变量。以下代码创建了一个 Lambda 表达式，其捕获块中有两个变量：一个名为 myCapture 的变量，用 Lambda 捕获表达式初始化为字符串 "Pi: "，以及一个名为 pi 的变量，它从外层作用域按值捕获。像 myCapture 这样的非引用捕获变量，如果用捕获初始化器初始化，则进行复制构造，则会去除 const 修饰符。
 
@@ -365,7 +365,7 @@ auto myLambda { [myPtr = move(myPtr)]{ println("{}", *myPtr); } };
 \end{cpp}
 
 
-\mySubsubsection{19.5.5.}{模板化Lambda表达式}
+\mySubsubsection{19.5.5}{模板化Lambda表达式}
 
 模板化Lambda表达式允许访问泛型Lambda表达式参数的类型信息。例如，有一个Lambda表达式，需要一个vector作为参数。然而，vector中的元素类型可以是任何类型；因此，使用auto作为其参数的泛型Lambda表达式。Lambda表达式的函数体想要弄清楚vector中元素的类型是什么。如果没有模板化Lambda表达式，可以通过decltype()和std::decay\_t类型特征来实现。类型特征会在第26章中介绍，但了解模板化Lambda表达式的优势并不需要这些细节。只需知道decay\_t会从类型中移除一些东西即可，例如const和引用限定符。以下是泛型Lambda表达式：
 
@@ -410,7 +410,7 @@ auto lambda { [] <typename T> (const vector<T> & values) {
 [] <typename T> (const T& value1, const T& value2) requires integral<T> {/* ... */}
 \end{cpp}
 
-\mySubsubsection{19.5.6.}{Lambda表达式作为返回类型}
+\mySubsubsection{19.5.6}{Lambda表达式作为返回类型}
 
 通过使用std::function，Lambda表达式可以从函数中返回：
 
@@ -455,7 +455,7 @@ auto multiplyBy2Lambda(int x)
 }
 \end{cpp}
 
-\mySubsubsection{19.5.7.}{Lambda表达式在未计算上下文中的使用}
+\mySubsubsection{19.5.7}{Lambda表达式在未计算上下文中的使用}
 
 Lambda表达式可以在未计算的上下文中使用。例如，传递给decltype()的参数仅在编译时使用，永远不会计算。以下是一个使用decltype()和Lambda表达式的示例：
 
@@ -463,7 +463,7 @@ Lambda表达式可以在未计算的上下文中使用。例如，传递给declt
 using LambdaType = decltype([](int a, int b) { return a + b; });
 \end{cpp}
 
-\mySubsubsection{19.5.8.}{无状态Lambda表达式的默认构造、复制和赋值}
+\mySubsubsection{19.5.8}{无状态Lambda表达式的默认构造、复制和赋值}
 
 无状态的Lambda表达式可以进行默认构造、复制和赋值：
 
@@ -489,7 +489,7 @@ println("{}", getLambda()(1, 2));
 
 \CXXTwentythreeLogo{-40}{-50}
 
-\mySubsubsection{19.5.9.}{递归Lambda表达式}
+\mySubsubsection{19.5.9}{递归Lambda表达式}
 
 
 

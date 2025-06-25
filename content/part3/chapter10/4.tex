@@ -1,7 +1,7 @@
 
 现在已经理解了派生类与其父类之间的关系，可以使用继承在其最强大的场景中——多态性。第5章讨论了多态性，以可互换的方式使用具有共同父类的对象，并使用对象代替父类。
 
-\mySubsubsection{10.4.1.}{回归电子表格}
+\mySubsubsection{10.4.1}{回归电子表格}
 
 第8章和第9章使用电子表格作为适合面向对象设计的应用程序的示例，SpreadsheetCell表示单个数据元素，该元素始终存储单个double值。以下是SpreadsheetCell的简化类定义。单元格可以设置为double或string\_view，但始终存储为double。在这个示例中，单元格的当前值始终作为字符串返回。
 
@@ -21,7 +21,7 @@ class SpreadsheetCell
 
 实际的电子表格应用程序中，单元格可以存储不同的东西。一个单元格可以存储一个double，但也可能存储一段文本。可能还需要额外的单元格类型，例如：公式单元格或日期单元格。要如何支持这些内容呢？
 
-\mySubsubsection{10.4.2.}{多态电子表格单元格}
+\mySubsubsection{10.4.2}{多态电子表格单元格}
 
 SpreadsheetCell类需要一次层次化的改造。一个合理的方法是将SpreadsheetCell的范围缩小到只覆盖字符串，也许在这个过程中将其重命名为StringSpreadsheetCell。为了处理双精度浮点数，第二个类DoubleSpreadsheetCell将从StringSpreadsheetCell继承，并提供特定于其自己格式的功能。图10.7展示了这样的设计。这种方法模型化了继承以重用，因为DoubleSpreadsheetCell仅为了使用StringSpreadsheetCell的一些内置功能，所以会对其进行继承。
 
@@ -47,7 +47,7 @@ SpreadsheetCell对象可以调用接口中的成员函数，甚至不知道单�
 其他数据结构，如第9章描述的Spreadsheet类，可以通过引用基类型来包含多种类型的单元格。
 \end{itemize}
 
-\mySubsubsection{10.4.3.}{SpreadsheetCell基类}
+\mySubsubsection{10.4.3}{SpreadsheetCell基类}
 
 所有电子表格单元格都从SpreadsheetCell基类派生，因此首先编写这个类可能是个好主意。设计基类时，需要考虑派生类之间的关系，可以推导出可以放入父类中的共性。字符串单元格和双精度浮点数单元格都包含单个数据片段，因此相似。由于数据来自用户，并将显示回给用户，因此值设置为字符串，并作为字符串检索。这些行为是构成基类的通用功能。
 
@@ -106,7 +106,7 @@ unique_ptr<SpreadsheetCell> cell { new StringSpreadsheetCell {} };
 
 SpreadsheetCell类没有什么可以实现的，所有成员函数都是纯虚的，析构函数显式设置为默认。
 
-\mySubsubsection{10.4.4.}{各个派生类}
+\mySubsubsection{10.4.4}{各个派生类}
 
 编写StringSpreadsheetCell和DoubleSpreadsheetCell类只是实现父类中定义的功能，想让客户能够实例化和使用字符串单元格和double单元格，所以单元格不能是抽象的——必须实现从父类继承的所有纯虚成员函数。如果一个派生类没有实现所有从基类继承的纯虚成员函数，那么这个派生类也是抽象的，客户将无法实例化派生类的对象。
 
@@ -183,7 +183,7 @@ std::string getString() const override
 
 doubleToString()和stringToDouble()与第8章中的实现相同，所以在这里省略了相应的实现代码。
 
-\mySubsubsection{10.4.5.}{利用多态}
+\mySubsubsection{10.4.5}{利用多态}
 
 SpreadsheetCell层次结构是多态的，客户端代码可以利用多态获益。以下测试程序探索了这些特性。
 
@@ -218,7 +218,7 @@ println("Vector: [{},{},{}]", cellArray[0]->getString(),
 \end{cpp}
 
 
-\mySubsubsection{10.4.6.}{考虑未来}
+\mySubsubsection{10.4.6}{考虑未来}
 
 从面向对象设计的角度来看，新的SpreadsheetCell层次结构实现无疑是一个改进，但它仍然不足以作为一个实际电子表格程序的实际类层次结构，原因有几个。
 
@@ -291,7 +291,7 @@ println("{}", result.getString()); // Prints Hello 8.400000
 
 如果对多态性感到有些不确定，可以从这个例子的代码开始尝试。实验性代码是一个很好的起点，可以简单地练习使用多态性。
 
-\mySubsubsection{10.4.7.}{为纯虚成员函数提供实现}
+\mySubsubsection{10.4.7}{为纯虚成员函数提供实现}
 
 从技术上讲，可以为纯虚成员函数提供实现。这个实现不能在类定义本身，必须在类外提供。尽管如此，该类仍是抽象的，派生类仍然需要为纯虚成员函数提供实现。对纯虚成员函数的实现可以调用，例如：在派生类中调用：
 

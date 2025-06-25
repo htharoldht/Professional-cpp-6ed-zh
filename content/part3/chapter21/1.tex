@@ -5,7 +5,7 @@
 本章介绍了本地化、不同的字符编码和字符串代码的可移植性。由于这些主题本身就需要一本书来介绍，所以本书不包括所有这些主题的详细讨论。
 \end{myNotic}
 
-\mySubsubsection{21.1.1.}{宽字符}
+\mySubsubsection{21.1.1}{宽字符}
 
 将字符视为字节的问题是，并非所有语言或字符集都能在8位或1字节中完全表示。C++有一个内置类型wchar\_t，用于保存宽字符。使用非ASCII（美国）字符的语言，如日语和阿拉伯语，可以在C++中使用wchar\_t表示，但C++标准没有为wchar\_t定义大小。一些编译器使用16位，而其他编译器使用32位。大多数情况下，其匹配底层操作系统本机Unicode字符类型的大小。为了编写跨平台代码，假设wchar\_t的大小是不安全的行为。
 
@@ -29,7 +29,7 @@ print()和println()不支持wchar\_t字符串文字，但支持UTF-8字符串文
 wcout << format(L"myWideCharacter is {}", myWideCharacter) << endl;
 \end{cpp}
 
-\mySubsubsection{21.1.2.}{非西方字符集}
+\mySubsubsection{21.1.2}{非西方字符集}
 
 宽字符是向前迈出的一大步，增加了可用于定义单个字符的空间。下一步是弄要清楚如何使用。宽字符集中，就像在ASCII中一样，字符由数字表示，现在称为编码点，每个数字不再适合8位。字符到编码点的映射要大得多，处理了许多不同的字符集，以及英语开发者所熟悉的字符。
 
@@ -153,7 +153,7 @@ const char8_t hello[] { u8"こんにちは世界" };
 println("{}", hello); // Error: doesn't compile!
 \end{cpp}
 
-\mySubsubsection{21.1.3.}{本地化字符串字面量}
+\mySubsubsection{21.1.3}{本地化字符串字面量}
 
 本地化的关键是，永远不应该在源代码中放入本地语言字符串字面量，除非是针对开发者的调试字符串。在 Microsoft Windows 应用程序中，这是通过将应用程序的所有字符串放在 STRINGTABLE 资源中来完成的。大多数其他平台提供了类似的功能。如果需要将应用程序翻译成另一种语言，翻译这些资源应该是开发者的工作，而不需要更改源码。有一些可用的工具，可以帮助开发者完成进行这个翻译过程。
 
@@ -179,7 +179,7 @@ vprint_unicode(loadResource(IDS_TRANSFERRED), make_format_args(n, filename));
 
 IDS\_TRANSFERRED是字符串资源表中一个条目的名称。对于英文版本，IDS\_TRANSFERRED 可以定义为“\{0\} bytes read from \{1\}”，而德文版本可以定义为“\{0\} Bytes aus \{1\} gelesen”。loadResource() 函数加载具有给定名称的字符串资源，而 vprint\_unicode()（见第2章）用 \{0\} 替换 n 的值，用 \{1\} 替换 filename 的值。
 
-\mySubsubsection{21.1.4.}{区域设置和特性}
+\mySubsubsection{21.1.4}{区域设置和特性}
 
 字符集只是国家之间数据表示差异的一个方面。即使使用相似字符集的国家，如英国和美国，在表示某些数据（如日期和货币值）的方式上仍然存在差异。
 

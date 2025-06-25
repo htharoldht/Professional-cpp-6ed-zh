@@ -15,7 +15,7 @@ C++标准库提供了几种不同类型的关联容器：
 \CXXTwentythreeLogo{-45}{20}
 \end{itemize}
 
-\mySubsubsection{18.5.1.}{有序关联容器}
+\mySubsubsection{18.5.1}{有序关联容器}
 
 与顺序容器不同，有序关联容器不将元素存储在线性配置中。相反，它们提供键到值的映射，插入、删除和查找的时间相等。
 
@@ -787,7 +787,7 @@ AccessList fileX;
 
 multiset对于set来说，就像multimap对于map一样。multiset支持set的所有操作，也可同时存储多个相等的元素。这里没有显示multiset的示例，它与set和multimap非常相似。
 
-\mySubsubsection{18.5.2.}{无序关联容器或哈希表}
+\mySubsubsection{18.5.2}{无序关联容器或哈希表}
 
 标准库支持无序关联容器或哈希表，有四个：unordered\_map、unordered\_multimap、unordered\_set和unordered\_multiset。前面讨论的map、multimap、set和multiset容器会对其元素进行排序，而这些无序版本不会对元素进行排序。
 
@@ -1029,7 +1029,7 @@ unordered\_multimap可以插入相同的键/值对。如果想要避免这种重
 
 <unordered\_set>定义了unordered\_set和unordered\_multiset，类似于set和multiset，不同之处在于"unordered\_*"不排序其键，而是使用哈希函数。unordered\_set和unordered\_map之间的区别与本章前面讨论的set和map之间的区别类似。要了解unordered\_set和unordered\_multiset操作的完整总结，请参阅标准库手册。
 
-\mySubsubsection{18.5.3.}{扁平set和扁平map关联容器适配器}
+\mySubsubsection{18.5.3}{扁平set和扁平map关联容器适配器}
 
 \CXXTwentythreeLogo{-40}{15}
 
@@ -1063,7 +1063,7 @@ const std::flat_set<std::string>& getAllUsers() const { return m_allowed; }
 
 其他一切保持不变。
 
-\mySubsubsection{18.5.4.}{关联容器的性能}
+\mySubsubsection{18.5.4}{关联容器的性能}
 
 从这一节可以看出，C++标准库包含几种不同的关联容器。如何知道为特定任务使用哪一种？如果用例中遍历关联容器的内部内容很重要，那么扁平关联容器适配器具有最佳性能，它们以连续内存的方式存储数据。如果更关心其他操作，那么无序关联容器通常比有序容器更快。如果性能非常重要，那么决定正确的容器唯一的方法是通过为特定用例对所有容器进行基准测试，可以选择更容易使用的那个。要使用有序版本，必须为自定义类类型实现比较操作，而对于无序版本，需要编写一个哈希函数。通常，后者更难实现。
 

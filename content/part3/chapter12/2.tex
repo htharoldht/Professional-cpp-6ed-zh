@@ -3,7 +3,7 @@
 
 类模板主要用于存储对象的容器或数据结构，我们已经在本书的早些部分中多次使用过类模板，例如std::vector、unique\_ptr、string等。本节通过一个运行示例，即Grid容器，来讨论如何编写自己的类模板。为了保持示例的长度合理性，并且简单到足以说明具体点，章节的不同部分会为Grid容器添加不同的特性，但这些特性后续不会使用。
 
-\mySubsubsection{12.2.1.}{编写类模板}
+\mySubsubsection{12.2.1}{编写类模板}
 
 假设想创建一个通用的游戏板类，可以作为棋盘、跳棋板、井字棋板，或其他二维游戏板使用。为了使其通用，应该能够存储棋子、跳棋子、井字棋子，或其他类型游戏的棋子。
 
@@ -380,7 +380,7 @@ int x { myGridOnFreeStore->at(0, 0).value_or(0) };
 \end{cpp}
 
 
-\mySubsubsection{12.2.2.}{编译器如何处理模板}
+\mySubsubsection{12.2.2}{编译器如何处理模板}
 
 要理解模板的复杂性，需要学习编译器如何处理模板代码。当编译器遇到类模板成员函数定义时，会进行语法检查，但并不编译模板。编译器不能编译模板定义，不知道这些模板将用于哪种类型。对于像 x = y 这样的代码，如果不知道 x 和 y 的类型，编译器就无法生成代码，这是语法检查中，两阶段名称查找的第一步。
 
@@ -427,7 +427,7 @@ template class Grid<string>;
 
 可以使用概念来编写模板参数的要求，编译器可以解释和验证这些要求。如果传递给实例化模板的模板参数不满足这些要求，编译器可以生成更易读的错误。概念将在本章后面讨论。
 
-\mySubsubsection{12.2.3.}{文件间的模板代码}
+\mySubsubsection{12.2.3}{文件间的模板代码}
 
 对于类模板，使用的源文件都必须能够访问类模板定义和成员函数定义。有几种机制可以实现这一点。
 
@@ -471,7 +471,7 @@ Grid<T>::Grid(std::size_t width, std::size_t height)
 // Remainder omitted for brevity.
 \end{cpp}
 
-\mySubsubsection{12.2.4.}{模板参数}
+\mySubsubsection{12.2.4}{模板参数}
 
 Grid 示例中，Grid 类模板有一个模板参数：存储类型。当编写类模板时，需要在尖括号内指定参数列表：
 
@@ -704,7 +704,7 @@ template <...>
 explicit TemplateName(Parameters) -> DeducedTemplate<...>;
 \end{cpp}
 
-\mySubsubsection{12.2.5.}{成员函数模板}
+\mySubsubsection{12.2.5}{成员函数模板}
 
 C++ 允许参数化类的单个成员函数，这样的成员函数称为成员函数模板，可以位于普通类或类模板中。当编写一个成员函数模板时，实际上在为许多不同类型编写该成员函数的许多不同版本。成员函数模板对于类模板中的赋值操作符和复制构造函数非常有用。
 
@@ -998,7 +998,7 @@ auto&& Grid<T>::at(this Self&& self, std::size_t x, std::size_t y)
 
 总结一下，通过结合成员函数模板、显式对象参数、转发引用和 forward\_like()，可以只声明和定义一个成员函数模板，就能提供 const 和非 const 的实例化。
 
-\mySubsubsection{12.2.6.}{类模板的特化}
+\mySubsubsection{12.2.6}{类模板的特化}
 
 可以为特定类型提供类模板的替代实现，让Grid 对 const char*（C 风格字符串）不起作用。一个 Grid<const char*> 将存储其元素在 vector<optional<const char*>{}> 中。复制构造函数和赋值操作符将执行这个 const char* 指针类型的浅复制。对于 const char*，更合理的是对字符串进行深度复制。这个问题的最简单解决方案是为 const char* 编写一个特定的替代实现，转换为 C++ 字符串并存储在 vector<optional<string>{}> 中。
 
@@ -1120,7 +1120,7 @@ std::optional<std::string>& Grid<const char*>::at(std::size_t x, std::size_t y)
 
 本节讨论了如何使用类模板特化来为类模板编写特殊实现，其中所有模板类型参数替换为特定类型，这称为全特化模板。全特化类模板本身不再是类模板，而是一个类定义。第 26 章会继续介绍类模板特化，并介绍了一个更高级的特性，称为部分特化或偏特化。
 
-\mySubsubsection{12.2.7.}{派生于类模板}
+\mySubsubsection{12.2.7}{派生于类模板}
 
 可以从类模板继承。如果派生类继承自模板本身，也必须是一个模板。或者，可以从类模板的具体实例派生，这时派生类不需要是一个模板。作为前者的一个例子，假设决定通用 Grid 类提供的功能不足以用作GameBoard。希望在GameBoard上添加一个 move() 成员函数，该函数将一个GameBoard上的元素从一个位置移动到另一个位置。以下是 GameBoard 模板的类定义：
 
@@ -1177,7 +1177,7 @@ chessBoard.move(0, 0, 0, 1);
 如果想覆盖 Grid 中的成员函数，需要在 Grid 类模板中将其标记为虚。
 \end{myNotic}
 
-\mySubsubsection{12.2.8.}{继承与特化}
+\mySubsubsection{12.2.8}{继承与特化}
 
 一些开发者发现模板继承和模板特化之间的区别有些混淆。以下表格总结了它们之间的差异：
 
@@ -1214,7 +1214,7 @@ chessBoard.move(0, 0, 0, 1);
 使用继承来扩展实现，用于多态。使用特化来为特定类型定制实现。
 \end{myNotic}
 
-\mySubsubsection{12.2.9.}{别名模板}
+\mySubsubsection{12.2.9}{别名模板}
 
 第 1 章介绍了类型别名和 typedef ，允许给特定的类型起另一个名字。可以编写以下类型别名，给类型 int 起一个第二个名字：
 

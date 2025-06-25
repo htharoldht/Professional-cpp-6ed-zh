@@ -1,9 +1,9 @@
 随机数引擎适配器会修改与之关联的随机数引擎的结果，这个关联的引擎称为基础引擎。这是适配器模式的一个例子（请参见第33章）。以下定义了三个适配器模板：
 
 \begin{cpp}
-template<class Engine, size_t p, size_t r> class discard_block_engine {...}
-template<class Engine, size_t w, class UIntT> class independent_bits_engine {...}
-template<class Engine, size_t k> class shuffle_order_engine {...}
+template<class Engine, size_t p, size_t r> class discard_block_engine {..}
+template<class Engine, size_t w, class UIntT> class independent_bits_engine {..}
+template<class Engine, size_t k> class shuffle_order_engine {..}
 \end{cpp}
 
 discard\_block\_engine适配器通过丢弃基础引擎生成的某些值来生成随机数，需要三个参数：要适配的引擎、块大小p，以及使用的块大小r。基础引擎用于生成p个随机数，然后适配器丢弃p-r个这些数字，并返回剩余的r个数字。

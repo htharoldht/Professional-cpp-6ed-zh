@@ -3,7 +3,7 @@
 
 定义类的过程包含两个部分：定义类本身和其成员函数。
 
-\mySubsubsection{8.2.1.}{类的定义}
+\mySubsubsection{8.2.1}{类的定义}
 
 对一个名为spreadsheet\_cell的模块中一个简单的SpreadsheetCell类的进行尝试，每个单元格只能存储一个数字：
 
@@ -121,7 +121,7 @@ export class SpreadsheetCell
 建议始终初始化类的数据成员。
 \end{myNotic}
 
-\mySubsubsection{8.2.2.}{定义成员函数}
+\mySubsubsection{8.2.2}{定义成员函数}
 
 SpreadsheetCell类定义足以创建该类的对象，如果尝试调用setValue()或getValue()成员函数，链接器会抱怨成员函数尚未定义，因为这些成员函数目前只有声明没有实现。通常，类定义放在模块接口文件中，对于成员函数的定义，可以将其放在模块接口文件中或模块实现文件中。
 
@@ -243,7 +243,7 @@ std::to\_string()和from\_chars()函数在第2章中进行了解释。
 
 使用此doubleToString()成员函数的实现，例如6.1的值转换为6.100000。因为它是一个私有的辅助成员函数，可以自由修改实现，而无需修改客户端(调用)代码。
 
-\mySubsubsection{8.2.3.}{使用对象}
+\mySubsubsection{8.2.3}{使用对象}
 
 类定义说明，SpreadsheetCell包含一个数据成员、四个公共成员函数和两个私有成员函数。类定义实际上并没有创建任何SpreadsheetCell对象，只是指定了其外貌和行为。类就像建筑蓝图，蓝图指定房子应该是什么样子，但是绘制蓝图的行为并不会建造房子，而房子必须根据制定的蓝图来建造。
 
@@ -312,7 +312,7 @@ println("cell 1: {} {}", myCellp->getValue(), myCellp->getString());
 如果不使用智能指针，在删除指向的对象后，将指针重置为nullptr是一个好主意。虽然这不是必需的，但这将使调试更容易。
 \end{myNotic}
 
-\mySubsubsection{8.2.4.}{this指针}
+\mySubsubsection{8.2.4}{this指针}
 
 每个正常的成员函数调用都会隐式传递一个指向调用对象的指针，作为名为this的“隐藏”参数。可以使用this指针来访问数据成员或调用成员函数，也可以将其传递给其他成员函数或函数。有时它也有助于消除名称歧义，可以定义SpreadsheetCell类使用value数据成员而不是m\_value。这时，setValue()看起来如下：
 
@@ -373,7 +373,7 @@ cout << myCell << endl;
 \end{cpp}
 \end{myNotic}
 
-\mySubsubsection{8.2.5.}{明确的对象参数}
+\mySubsubsection{8.2.5}{明确的对象参数}
 
 \CXXTwentythreeLogo{-40}{15}
 

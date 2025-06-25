@@ -17,7 +17,7 @@
 如前所述，截至本书编写时，并非所有编译器都完全支持模块，尽管所有主要编译器至少部分支持。本书到处使用模块。如果正在使用的编译器还不完全支持模块，可以将模块化代码转换为非模块化代码。
 \end{myNotic}
 
-\mySubsubsection{11.1.1.}{非模块化代码}
+\mySubsubsection{11.1.1}{非模块化代码}
 
 如果想使用不完全支持模块的编译器，编译本书中的代码示例，可以按以下方式去模块化代码：
 
@@ -49,11 +49,11 @@
 
 \CXXTwentythreeLogo{-40}{-60}
 
-\mySubsubsection{11.1.2.}{标准模块}
+\mySubsubsection{11.1.2}{标准模块}
 
 如第1章所述，可以通过导入标准命名模块 std 来访问 C++ 标准库中的所有内容。这个模块使整个标准库可用，包括所有在诸如 <cstddef> 等头文件中定义的 C 函数，所有 C 函数仅通过 std 命名空间提供。对于遗留代码，可以考虑导入 std.compat 模块，会导入 std 的所有内容，可使所有 C 函数在 std 命名空间和全局命名空间中可用。在新代码中不建议使用 std.compat。
 
-\mySubsubsection{11.1.3.}{模块接口文件}
+\mySubsubsection{11.1.3}{模块接口文件}
 
 模块接口文件定义了模块提供的功能的接口，通常是具有 .cppm 扩展名的文件。模块接口文件以声明开始，声明该文件定义了一个模块的名称，这称为模块声明。模块的名称可以是任何 C++ 标识符，可以包含点，但不能以点开始或结束，也不能连续包含多个点。有效名称的示例包括 datamodel、mycompany.datamodel、mycompany.datamodel.core、datamodel\_core 等。
 
@@ -129,7 +129,7 @@ export
 \end{cpp}
 
 
-\mySubsubsection{11.1.4.}{模块实现文件}
+\mySubsubsection{11.1.4}{模块实现文件}
 
 模块可以分为模块接口文件和一个或多个模块实现文件，模块实现文件通常的扩展名为.cpp。开发者可以自由决定，哪些实现移动到模块实现文件中，哪些实现留在模块接口文件中。一种选择是将所有函数和成员函数的实现，移动到模块实现文件中，而只在模块接口文件中留下函数声明、类定义等。另一种选择是在接口文件中留下小型函数和成员函数的实现，而将其他函数和成员函数的实现移动到实现文件中。
 
@@ -177,7 +177,7 @@ const string& Person::getLastName() const { return m_lastName; }
 模块实现文件不能导出，只有模块接口文件可以。
 \end{myWarning}
 
-\mySubsubsection{11.1.5.}{接口与实现分离}
+\mySubsubsection{11.1.5}{接口与实现分离}
 
 使用头文件（本章后面讨论）时，强烈建议只在头文件（.h）中放置声明，并将所有实现移动到源文件（.cpp），这样做的原因之一是为了减少编译时间。如果将实现放在头文件中任何修改，即使是修改注释，都需要重新编译包含该头文件的所有源文件。对于某些头文件，这可能会波及整个代码库，导致程序需要完全重新编译。如果将实现放在源文件中，不触及头文件而更改这些实现，则只需要重新编译那个单独的源文件即可。
 
@@ -213,7 +213,7 @@ const std::string& Person::getLastName() const { return m_lastName; }
 \end{cpp}
 
 
-\mySubsubsection{11.1.6.}{可见性与可达性}
+\mySubsubsection{11.1.6}{可见性与可达性}
 
 如前所述，当在另一个不属于 person 模块的非 test.cpp 文件中导入 person 模块时，并没有从 person 模块接口文件中隐式继承 std 的导入声明。如果没有在 test.cpp 中显式导入 std ，则 std::string是不可见的，所以以下代码行无法编译：
 
@@ -237,7 +237,7 @@ auto length { lastName.length() };
 
 要在 test.cpp 中使 std::string 名称正确可见，需要显式导入 std 或 <string>。
 
-\mySubsubsection{11.1.7.}{子模块}
+\mySubsubsection{11.1.7}{子模块}
 
 C++标准并没有明确提到子模块，允许在模块名称中使用点号，就可以按设想的层次结构来组织模块。例如，之前的DataModel命名空间：
 
@@ -299,7 +299,7 @@ import datamodel.address;
 
 一次性导入所有内容，比有选择地导入所需内容更方便，尤其是对于很少更改的稳定模块。然而，通过为不太稳定的模块使用选择性导入，如果对模块进行了更改，可能会增加构建时间。例如，对datamodel.address子模块的接口进行了更改，只需要重新编译导入该子模块的文件。
 
-\mySubsubsection{11.1.8.}{模块分区}
+\mySubsubsection{11.1.8}{模块分区}
 
 另一种模块结构化的选项是将其分割成单独的分区。子模块和分区的区别在于，子模块结构对模块的用户可见，允许用户仅导入想要使用的子模块。另一方面，分区用于在模块内部进行结构化，分区对模块的用户不可见。模块接口分区文件中声明的所有分区必须最终由主模块接口文件导出，可以直接或间接导出。一个模块只有一个这样的主模块接口文件，即包含 export module name 声明的接口文件。
 
@@ -406,7 +406,7 @@ double Math::lerchZeta(double lambda, double alpha, double s) { return /* ... */
 
 使用这样的分区实现与辅助函数，只在多个其他源文件使用这些辅助函数时才有意义。
 
-\mySubsubsection{11.1.9.}{私有模块段}
+\mySubsubsection{11.1.9}{私有模块段}
 
 主模块接口可以包含一个私有模块段。这个私有模块段起始与下面这行代码：
 
@@ -484,7 +484,7 @@ auto result { impl->add(20, 22) }; // Error!
 
 如果从模块接口文件中删除module :private;行，则之前的代码片段将编译运行正常。读者们可能会对此感到惊讶；毕竟，Adder::Impl类没有明确导出。的确——它没有明确导出，但因导出了Adder类且Impl类在Adder类中声明，所以隐式导出了Adder::Impl类。
 
-\mySubsubsection{11.1.10.}{头文件单元}
+\mySubsubsection{11.1.10}{头文件单元}
 
 导入一个模块时，需要使用如下的导入声明：
 
@@ -515,7 +515,7 @@ import <person.h>; // Search in system include directories.
 通过导入头文件单元，该头文件单元的预处理定义可用。如果导出导入头文件单元，其预处理定义不会进一步导出。需要访问这些预处理定义的代码，都需要显式导入头文件单元。
 \end{myNotic}
 
-\mySubsubsection{11.1.11.}{可导入的标准库头文件}
+\mySubsubsection{11.1.11}{可导入的标准库头文件}
 
 所有的C++头文件，如<iostream>、<vector>、<string>等，都是可导入的头文件，可以通过导入声明来导入：
 

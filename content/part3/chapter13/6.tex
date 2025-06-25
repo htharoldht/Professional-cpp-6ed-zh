@@ -1,7 +1,7 @@
 
 C++标准库包括一个文件系统库，定义在<filesystem>中，位于std::filesystem命名空间中，允许编写可移植的代码来操作文件系统。可以用它来查询某物是否是目录或文件，遍历目录的内容，操作路径，以及获取文件信息，如大小、扩展名、创建时间等。库的两大重要部分——路径和目录条目——将在下一节中介绍。
 
-\mySubsubsection{13.6.1.}{路径}
+\mySubsubsection{13.6.1}{路径}
 
 库的基本组件是路径。路径可以是绝对的或相对的，可以包含可选的文件名。以下代码定义了几个路径。注意，使用原字符串字面量，这在第2章中引入，以避免转义反斜杠：
 
@@ -92,7 +92,7 @@ file
 
 有关所有可用功能的完整列表，请参考标准库参考手册。
 
-\mySubsubsection{13.6.2.}{目录}
+\mySubsubsection{13.6.2}{目录}
 
 路径仅代表文件系统上的目录或文件，路径可能指向不存在的目录或文件。如果想查询实际的目录或文件，需要从路径构造一个directory\_entry。directory\_entry接口支持，诸如exists()、is\_directory()、is\_regular\_file()、file\_size()、last\_write\_time()等操作。
 
@@ -106,7 +106,7 @@ if (dirEntry.exists() && dirEntry.is_regular_file()) {
 }
 \end{cpp}
 
-\mySubsubsection{13.6.3.}{辅助函数}
+\mySubsubsection{13.6.3}{辅助函数}
 
 这里也有一整套辅助函数可供使用，可以使用copy()复制文件或目录，create\_directory()在文件系统上创建新的目录，exists()查询给定的目录或文件是否存在，file\_size()获取文件的大小，last\_write\_time()获取文件最后修改的时间，remove()删除文件，temp\_directory\_path()获取适合存储临时文件的目录，space()查询文件系统的可用空间等。请参阅标准库参考（详见附录B）以获取完整列表。
 
@@ -120,7 +120,7 @@ println("Free: {}", s.free);
 
 可以在以下关于目录迭代的章节中，找到这些辅助函数的更多示例。
 
-\mySubsubsection{13.6.4.}{目录迭代}
+\mySubsubsection{13.6.4}{目录迭代}
 
 如果想递归地遍历给定目录中的所有文件和子目录，可以使用recursive\_directory\_iterator。为了开启迭代过程，需要一个指向directory\_entry的迭代器。为了知道何时停止迭代，还需要一个结束迭代器。要创建开始迭代器，构造一个recursive\_directory\_iterator并传递要迭代的目录路径。要构造结束迭代器，使用默认构造函数创建一个recursive\_directory\_iterator。要获取迭代器所指的directory\_entry的访问权限，使用解引用操作符*。通过简单地使用自加操作符递增迭代器，直到达到结束迭代器，就可以遍历集合中所有元素。结束迭代器不再属于集合，不再指向有效的directory\_entry，并且不能解引用。
 

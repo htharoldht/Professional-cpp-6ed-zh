@@ -5,7 +5,7 @@
 
 标准库在互斥锁和锁类中提供了对互斥的支持。这些可以用于实现线程之间的同步，并在以下各节中进行讨论。
 
-\mySubsubsection{27.4.1.}{互斥锁类}
+\mySubsubsection{27.4.1}{互斥锁类}
 
 互斥锁代表互斥访问，基本机制为：
 
@@ -110,7 +110,7 @@ shared\_timed\_mutex还支持try\_lock\_shared\_for()和try\_lock\_shared\_until
 
 recursive\_timed\_mutex允许线程多次获取锁，就像recursive\_mutex一样。
 
-\mySubsubsection{27.4.2.}{锁}
+\mySubsubsection{27.4.2}{锁}
 
 锁类是一种RAII类，使正确获取和释放互斥锁变得更加容易；锁类的析构函数会自动释放关联的互斥锁。C++标准定义了四种锁：std::lock\_guard、unique\_lock、shared\_lock和scoped\_lock。
 
@@ -246,7 +246,7 @@ int main()
 }
 \end{cpp}
 
-\mySubsubsection{27.4.3.}{std::call\_once}
+\mySubsubsection{27.4.3}{std::call\_once}
 
 可以使用std::call\_once()与std::once\_flag结合，确保某个函数或成员函数仅调用一次，无论多少线程尝试使用相同的once\_flag调用call\_once()。实际上只有一次call\_once()会调用给定的函数。如果给定的函数没有抛出异常，这次调用就是有效的call\_once()调用。如果给定的函数抛出异常，异常会传播回调用者，然后选择另一个调用者来执行函数。特定once\_flag实例的有效调用，所有其他同一once\_flag上的call\_once()调用完成之前完成。其他尝试对同一once\_flag调用call\_once()的线程会阻塞，直到有效调用完成。图27.4说明了这一点，涉及三个线程。线程1执行有效的call\_once()调用，因为线程1的已有已经完成调用，线程2阻塞直到调用完成，而线程3不会阻塞。
 
@@ -292,7 +292,7 @@ Processing
 
 可以在启动线程之前在main()函数的开始处调用一次initializeSharedResources()；然而，这样就不会对call\_once()进行使用了。
 
-\mySubsubsection{27.4.4.}{使用互斥锁的示例}
+\mySubsubsection{27.4.4}{使用互斥锁的示例}
 
 接下来的几节将给出几个示例，说明如何使用互斥锁来同步多个线程。
 

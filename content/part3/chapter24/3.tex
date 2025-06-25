@@ -122,7 +122,7 @@ println("d = {}", d);
 auto t2 { make_tuple(16, ref(d), cref(d), ref(str1)) };
 \end{cpp}
 
-\mySubsubsection{24.3.1.}{分解Tuple}
+\mySubsubsection{24.3.1}{分解Tuple}
 
 可以通过两种方式将tuple分解为其单独的元素：结构化绑定和 std::tie()。
 
@@ -174,7 +174,7 @@ After: i = 16, str = "Test", b = true
 tie(i, ignore, b) = t1;
 \end{cpp}
 
-\mySubsubsection{24.3.2.}{连接}
+\mySubsubsection{24.3.2}{连接}
 
 可以使用 std::tuple\_cat() 将两个元组连接成一个。以下示例中，t3 的类型是 tuple<int, string, bool, double, string>：
 
@@ -191,7 +191,7 @@ println("t3 = {}", t3);
 t3 = (16, "Test", true, 3.14, "string 2")
 \end{shell}
 
-\mySubsubsection{24.3.3.}{比较}
+\mySubsubsection{24.3.3}{比较}
 
 tuple支持所有比较操作符。为了使比较操作符工作，tuple中存储的元素类型也应支持比较操作符：
 
@@ -247,7 +247,7 @@ println("{}", (f1 < f2)); // Outputs true
 println("{}", (f2 > f1)); // Outputs true
 \end{cpp}
 
-\mySubsubsection{24.3.4.}{make\_from\_tuple}
+\mySubsubsection{24.3.4}{make\_from\_tuple}
 
 std::make\_from\_tuple<T>() 构造一个给定类型 T 的对象，并将给定tuple中的元素作为 T 构造函数的参数传递：
 
@@ -273,7 +273,7 @@ auto foo { make_from_tuple<Foo>(myTuple) };
 
 这个函数在日常使用中并不实用，但在编写使用模板和模板元编程的代码时会派上用场。
 
-\mySubsubsection{24.3.5.}{apply}
+\mySubsubsection{24.3.5}{apply}
 
 std::apply() 调用一个给定的可调用对象，并将给定tuple中的元素作为参数传递：
 

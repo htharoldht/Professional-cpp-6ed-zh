@@ -69,7 +69,7 @@ println("{\emojifont 😊}");
 
 std::print()和println()是向控制台写入文本的推荐方式，本书中的所有示例都使用了它们。它们是类型安全的，可扩展以支持自定义类型，易于阅读，支持Unicode输出，支持不同语言的本地化等。除了这些好处之外，print()和println()的性能也比直接使用C++ I/O流要好得多，print()和println()在底层仍然使用流。
 
-\mySubsubsection{2.2.1.}{格式化字符串}
+\mySubsubsection{2.2.1}{格式化字符串}
 
 std::format()、print()和println()使用格式字符串，该字符串指定在输出字符串中必须如何格式化给定参数。基本形式在前面介绍过，并且在示例中使用过，是时候看看这些格式字符串有多强大了。
 
@@ -110,7 +110,7 @@ println();
 println("");
 \end{cpp}
 
-\mySubsubsection{2.2.2.}{参数索引}
+\mySubsubsection{2.2.2}{参数索引}
 
 可以在所有替换字段中省略索引，或者为所有替换字段指定传递给format()、print()或println()的第二个及后续参数的索引，这些参数应该用于替换字段。若想要多次输出某个值，可以多次使用某个特定的索引。若省略了索引，则传递的第二个及后续参数，将按给定的顺序用于所有替换字段。
 
@@ -139,7 +139,7 @@ println("Read {0} bytes from {}", n, "file1.txt");
 println("从{1}中读取{0}个字节。 ", n, "file1.txt");
 \end{cpp}
 
-\mySubsubsection{2.2.3.}{输出到不同地方}
+\mySubsubsection{2.2.3}{输出到不同地方}
 
 目前为止，每次调用print()和println()都有一个格式字符串作为第一个参数，后面跟着一些附加参数:
 
@@ -155,7 +155,7 @@ println("x has value {} and y has value {}.", x, y);
 println(cerr, "x has value {} and y has value {}.", x, y);
 \end{cpp}
 
-\mySubsubsection{2.2.4.}{编译时验证字符串的格式}
+\mySubsubsection{2.2.4}{编译时验证字符串的格式}
 
 \CXXTwentythreeLogo{-40}{15}
 
@@ -238,7 +238,7 @@ try {
 
 现在，来研究一下格式说明符到底有多强大。
 
-\mySubsubsection{2.2.5.}{格式说明符}
+\mySubsubsection{2.2.5}{格式说明符}
 
 如前所述，格式字符串可以包含用花括号分隔的替换字段，这些花括号内可以是格式为[index][:specifier]的字符串。本节讨论替换字段的格式说明符部分。
 
@@ -442,7 +442,7 @@ cout << format(std::locale{ "nl" }, "|{:Lg}|\n", f); // |1,2|
 
 \CXXTwentythreeLogo{-40}{-50}
 
-\mySubsubsection{2.2.6.}{格式化转义字符和字符串}
+\mySubsubsection{2.2.6}{格式化转义字符和字符串}
 
 C++23可以使用?类型说明符。这个用例并不经常发生，但对于日志记录和调试很有帮助。输出类似于在代码中编写字符串和字符字面量的方式:以双引号或单引号开始和结束，并且使用转义字符序列。下表显示了使用转义格式时某些字符的输出:
 
@@ -477,7 +477,7 @@ println("|{:?}|", '"');                 // |'"'|
 
 \CXXTwentythreeLogo{-40}{-50}
 
-\mySubsubsection{2.2.7.}{格式范围}
+\mySubsubsection{2.2.7}{格式范围}
 
 第 1 章介绍了std::vector、array和pair容器来存储多个数据元素。C++23起，可以直接格式化这些元素的范围。对于如vector和array这样的范围，默认输出由方括号包围，各个元素由逗号分隔。若范围的元素是字符串，其输出默认进行转义。
 
@@ -579,7 +579,7 @@ println("{:n:n}", vv);      // 11, 22, 33, 44, 55
 println("{:n:n:*^4}", vv);  // *11*, *22*, *33*, *44*, *55*
 \end{cpp}
 
-\mySubsubsection{2.2.8.}{支持自定义类型}
+\mySubsubsection{2.2.8}{支持自定义类型}
 
 可以扩展格式化库以添加对自定义类型的支持。这涉及到编写std::formatter类模板的特化，其中包含两个成员函数模板:parse()和format()。我知道，在这里各位读者可能还没有理解这个例子中的所有语法，因为它使用了以下技术:
 

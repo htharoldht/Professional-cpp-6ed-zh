@@ -1,7 +1,7 @@
 
 作为开发者，无疑会遇到不同类之间具有共同特征，或者在某种程度上相互关联的情况。面向对象的语言为处理类之间的这种关系提供了多种机制，难点在于理解这种关系实际上是什么。类之间有两种主要的关系类型——has-a关系和is-a关系。
 
-\mySubsubsection{5.4.1.}{Has-a关系}
+\mySubsubsection{5.4.1}{Has-a关系}
 
 具有 has-a 关系的类遵循 “A 中有一个 B” 或 “A 包含一个 B” 的模式。这种关系中，可以将一个类视为另一个类的部分，描述由其他类组成的类，所以组件通常代表 has-a 关系。
 
@@ -23,7 +23,7 @@
 组合：如果销毁一个由其他对象组成的对象，那些其他对象也会销毁。如果销毁一个包含按钮的窗口对象，那些按钮对象也会销毁。
 \end{itemize}
 
-\mySubsubsection{5.4.2.}{Is-a关系(继承)}
+\mySubsubsection{5.4.2}{Is-a关系(继承)}
 
 is-a 关系是面向对象编程的一个基本概念，因此它有多个名称，包括派生、子类化、扩展和继承。类模拟了现实世界中具有属性和行为的对象。继承模拟了这些对象倾向于组织成层次结构，这些层次结构表示了 is-a 关系。
 
@@ -69,7 +69,7 @@ C++ 提供了一种类似于覆盖成员函数的方式来覆盖属性。但这�
 
 多态性是面向对象编程的一部分，利用了继承所提供的东西。动物园模拟中，可以编程地遍历动物园中的所有动物，并让每个动物移动一次。因为所有的动物都是 Animal 类的成员，都知道如何移动。一些动物已经重写了移动成员函数，但这正是最好的部分——因为每个动物都以已知的方式移动，所以代码只是告诉每个动物移动，而不关心具体是哪种动物。
 
-\mySubsubsection{5.4.3.}{Has-a和Is-a的区别}
+\mySubsubsection{5.4.3}{Has-a和Is-a的区别}
 
 现实中，很容易区分对象之间的 has-a 和 is-a 关系。没有人会说一个橙子有一个水果——橙子是一种水果。代码中，事情有时并不那么清楚。
 
@@ -199,7 +199,7 @@ myArray.insert(14534, collection); // Replace the collection with the updated on
 
 请注意，AssociativeArray 和 MultiAssociativeArray 是在这里用来演示 is-a 和 has-a 之间的区别。代码中，建议使用标准关联数组类。C++ 标准库提供了std::map用于代替 AssociativeArray，并使用std::multimap代替 MultiAssociativeArray。
 
-\mySubsubsection{5.4.4.}{Not-a关系}
+\mySubsubsection{5.4.4}{Not-a关系}
 
 考虑类之间具有哪种类型的关系时，应该考虑它们是否具有关系。不要让面向对象设计的热情变成许多不必要的类/派生类关系。
 
@@ -209,7 +209,7 @@ myArray.insert(14534, collection); // Replace the collection with the updated on
 
 避免不必要的继承的最佳方法是，首先绘制出你的设计。对于每个类和派生类，写下打算放入类的属性和成员函数。如果发现一个类没有特别的属性和成员函数，或者其所有属性和成员函数都可使用派生类完全覆盖，除了前面提到的抽象基类之外，应该考虑重新设计。
 
-\mySubsubsection{5.4.5.}{层次结构}
+\mySubsubsection{5.4.5}{层次结构}
 
 就像类 A 可以是类 B 的基类一样，B 也可以是类 C 的基类。面向对象的层次结构可以模拟这种多级关系。一个动物园模拟程序可能会为每个动物设计公共 Animal 类的派生类，如图 5.8 所示。
 
@@ -236,7 +236,7 @@ myArray.insert(14534, collection); // Replace the collection with the updated on
 避免派生类覆盖大部分父类的功能，除非父类是抽象基类
 \end{itemize}
 
-\mySubsubsection{5.4.6.}{多重继承}
+\mySubsubsection{5.4.6}{多重继承}
 
 到目前为止的所有示例都只有一个继承链，给定的类最多只有一个直接父类。可以通过多重继承，一个类可以有多个基类。
 
@@ -260,7 +260,7 @@ myArray.insert(14534, collection); // Replace the collection with the updated on
 
 其他语言可以完全去掉多重继承，通过重新思考层次结构，可以在项目设计时避免引入多重继承。
 
-\mySubsubsection{5.4.7.}{混合类}
+\mySubsubsection{5.4.7}{混合类}
 
 混合类代表了类之间另一种类型的关系。在 C++ 中，实现混合类的方法在语法上与多重继承相似，但语义上有很大的不同。混合类回答了“这个类还能做什么？”的问题，答案往往以“-able”结尾。混合类是一种可以向类添加功能的类，而不必以 is-a 关系的方式，可以将其视为一种共享关系。
 

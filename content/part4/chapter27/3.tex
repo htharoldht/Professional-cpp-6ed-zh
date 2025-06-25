@@ -66,7 +66,7 @@ int main()
 
 atomic\_flag是一个原子布尔类型，总是无锁的，这是C++标准保证的。与atomic<bool>的区别在于，不提供赋值运算符，而提供了一些成员函数，如clear()、test()和test\_and\_set()。使用atomic\_flag的示例将在本章后面的互斥部分中给出，用于实现一个自旋锁。
 
-\mySubsubsection{27.3.1.}{Atomic Operations}
+\mySubsubsection{27.3.1}{Atomic Operations}
 
 C++标准定义了一系列对atomic<T>的特殊操作，本节描述了其中的一些操作。要查看完整的列表，请参考标准库参考（见附录B）。
 
@@ -137,11 +137,11 @@ T atomic<T>::fetch_add(T value, memory_order = memory_order_seq_cst);
 
 可以更改默认的memory\_order。C++标准提供了memory\_order\_relaxed、memory\_order\_consume、memory\_order\_acquire、memory\_order\_release、memory\_order\_acq\_rel和memory\_order\_seq\_cst，这些都在std命名空间中定义。除非是这个领域的专家，否则很少会想使用非默认值。尽管根据某些指标，另一个内存序可能比默认值表现得更好，如果以不正确的方式使用，仍然会引入数据竞争或其他难以调试的问题。如果想了解更多关于内存序的信息，请参阅附录B中的多线程参考资料。
 
-\mySubsubsection{27.3.2.}{智能原子指针}
+\mySubsubsection{27.3.2}{智能原子指针}
 
 支持atomic<std::shared\_ptr<T>{}>。共享指针的控制块，用于存储引用计数等，是线程安全的，这保证了指向的对象删除的次数恰好是一次，而共享指针的其他内容不都是线程安全的。如果从多个线程同时使用同一个共享指针实例，就会在调用非常量成员函数时发生数据竞争，比如:调用reset()、assign()、swap()等。另一方面，当从多个线程使用同一个atomic<shared\_ptr<T>{}>实例时，即使是调用非常量共享指针成员函数也是线程安全的。需要注意的是，调用共享指针所指向对象的成员函数不是线程安全的，并且需要手动同步。
 
-\mySubsubsection{27.3.3.}{原子引用}
+\mySubsubsection{27.3.3}{原子引用}
 
 std::atomic\_ref基本上与std::atomic相同，甚至具有相同的接口，可与引用一起工作，而atomic总是提供一个提供的值的副本。atomic\_ref实例本身的生命周期应该比它引用对象短。atomic\_ref是可复制的，可以创建尽可能多的atomic\_ref实例，指向同一个对象。通过atomic\_ref实例进行的加载和存储都是原子性的，并且不会相互竞争。而没有通过atomic\_ref实例进行的并发加载和存储，可能会与这些原子访问竞争。atomic\_ref<T>类模板可以与简单的复制类型T一起使用，就像std::atomic一样。此外，标准库还提供了以下内容：
 
@@ -158,7 +158,7 @@ std::atomic\_ref基本上与std::atomic相同，甚至具有相同的接口，�
 
 以下部分给出了如何使用atomic\_ref的一个示例。
 
-\mySubsubsection{27.3.4.}{使用原子类型}
+\mySubsubsection{27.3.4}{使用原子类型}
 
 本节更详细地解释了为什么使用原子类型。假设有一个名为increment()的函数，在循环中递增一个整数引用参数。
 
@@ -266,7 +266,7 @@ void increment(atomic<int>& counter)
 }
 \end{cpp}
 
-\mySubsubsection{27.3.5.}{等待原子变量}
+\mySubsubsection{27.3.5}{等待原子变量}
 
 对于std::atomic和atomic\_ref，以下是与等待相关的成员函数可用，以高效地等待修改原子变量：
 

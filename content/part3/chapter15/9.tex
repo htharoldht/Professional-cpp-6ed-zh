@@ -5,7 +5,7 @@ C++ 允许重新定义程序中内存分配和释放的方式，可以在全局�
 除非对内存分配策略有深入的了解，否则尝试重载内存分配例程通常不值得。不要仅仅因为听起来不错，就去重载它们。只有在真正的需求和必要的知识时再这样做。
 \end{myWarning}
 
-\mySubsubsection{15.9.1.}{new 和 delete 的工作原理}
+\mySubsubsection{15.9.1}{new 和 delete 的工作原理}
 
 C++ 中最棘手的是 new 和 delete ：
 
@@ -69,7 +69,7 @@ void operator delete(void* ptr, void*) noexcept;
 void operator delete[](void* ptr, void*) noexcept;
 \end{cpp}
 
-\mySubsubsection{15.9.2.}{重载 new 和 delete操作符}
+\mySubsubsection{15.9.2}{重载 new 和 delete操作符}
 
 可以替换全局的 new 和 delete 操作符，这些函数在程序中的每个 new 表达式和 delete 表达式都会调用。然而，引用 Bjarne Stroustrup 的话：“... 不要轻率的替换全局  new 和 delete 操作符”（《C++ 编程语言》第三版，Addison-Wesley，1997）。我也不推荐这么做！
 
@@ -180,7 +180,7 @@ operator delete[]
 重载所有形式的 new 和 delete操作符，或者显式删除不希望使用的重载，避免内存分配中的不一致。
 \end{myWarning}
 
-\mySubsubsection{15.9.3.}{显式删除或默认 new 和 delete操作符}
+\mySubsubsection{15.9.3}{显式删除或默认 new 和 delete操作符}
 
 第8章展示了如何显式删除或默认一个构造函数或赋值操作符，显式删除或默认不仅仅限于构造函数和赋值操作符。以下类删除了 new 和 new[]操作符，所以这个类的对象不能使用 new 或 new[] 动态分配：
 
@@ -203,7 +203,7 @@ MyClass* p2 { new MyClass[2] };
 MyClass* p3 { new (std::nothrow) MyClass };
 \end{cpp}
 
-\mySubsubsection{15.9.4.}{带有额外参数的重载 new 和 delete操作符}
+\mySubsubsection{15.9.4}{带有额外参数的重载 new 和 delete操作符}
 
 除了重载 operator new 的标准形式，还可以编写带有参数的版本。这些参数可以用于，向内存分配例程传递各种标志或计数器。例如，一些运行时库在调试模式下使用此方法，在对象分配时提供文件名和行号，以便在发生内存泄漏时可以确定进行分配的行。
 
@@ -245,7 +245,7 @@ operator delete
 
 当定义带有参数的 new 操作符时，也应该定义相应的带有相同参数的 delete操作符。然而，不能自己调用这个带有参数的 delete操作符，只能在使用带有参数的 new操作符，并且对象的构造函数抛出异常时才会调用。
 
-\mySubsubsection{15.9.5.}{带有内存大小参数的 delete操作符重载}
+\mySubsubsection{15.9.5}{带有内存大小参数的 delete操作符重载}
 
 delete 操作符的一个替代形式允许你获得应该释放的内存的大小以及指针，只需声明 delete 操作符的原型，带有一个 size 参数。
 

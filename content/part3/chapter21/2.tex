@@ -67,7 +67,7 @@ egrep: POSIX grep 实用程序使用的语法，带参数 -E 。
 如果是第一次听说正则表达式，请直接使用默认的 ECMAScript 语法。
 \end{myNotic}
 
-\mySubsubsection{21.2.1.}{ECMAScript 语法}
+\mySubsubsection{21.2.1}{ECMAScript 语法}
 
 正则表达式模式是一系列字符，代表想要匹配的内容。正则表达式中的任何字符都会匹配其本身，除非是以下特殊字符：
 
@@ -365,7 +365,7 @@ R"(( |\n|\r|\\))"
 
 这就是 ECMAScript 语法的简要描述。接下来的部分将解释，如何在 C++ 代码中使用正则表达式。
 
-\mySubsubsection{21.2.2.}{正则表达式库}
+\mySubsubsection{21.2.2}{正则表达式库}
 
 正则表达式库中的一切都在 <regex> 和 std 命名空间中定义，正则表达式库定义的基本模板类型包括：
 
@@ -431,7 +431,7 @@ using wsregex_token_iterator = regex_token_iterator<wstring::const_iterator>;
 
 接下来的将介绍regex\_match(), regex\_search() 和 regex\_replace() 算法，以及 regex\_iterator 和 regex\_token\_iterator 类。
 
-\mySubsubsection{21.2.3.}{regex\_match()}
+\mySubsubsection{21.2.3}{regex\_match()}
 
 regex\_match() 算法可以用于比较给定的源字符串与正则表达式模式。如果模式匹配整个源字符串，返回 true，否则返回 false。
 
@@ -566,7 +566,7 @@ regex r { "(\\d{4})/(\\d{1,2})/(\\d{1,2})" };
 \end{cpp}
 \end{myNotic}
 
-\mySubsubsection{21.2.4.}{regex\_search()}
+\mySubsubsection{21.2.4}{regex\_search()}
 
 上一节中讨论的 regex\_match() 算法返回 true，如果整个源字符串与正则表达式匹配，否则返回 false。如果想在源字符串中搜索匹配的子字符串，需要使用 regex\_search()。regex\_search() 有七个重载，具有以下形式：
 
@@ -618,7 +618,7 @@ Enter a string with optional code comments (q=quit):
 
 match\_results 对象还具有 prefix() 和 suffix() 成员函数，分别返回匹配前的字符串和匹配后的字符串。
 
-\mySubsubsection{21.2.5.}{regex\_iterator}
+\mySubsubsection{21.2.5}{regex\_iterator}
 
 永远不应该在循环中使用 regex\_search()，应该使用 regex\_iterator 或 regex\_token\_iterator，它们的工作方式类似于标准库容器中的迭代器。
 
@@ -662,7 +662,7 @@ for (sregex_iterator iter { cbegin(str), cend(str), regex { "[\\w]+" } };
     iter != end; ++iter) { ... }
 \end{cpp}
 
-\mySubsubsection{21.2.6.}{regex\_token\_iterator}
+\mySubsubsection{21.2.6}{regex\_token\_iterator}
 
 上一节描述了 regex\_iterator，遍历每个匹配项。在每次迭代中，都会得到一个 match\_results 对象，可以使用它来提取匹配项中的子表达式，这些子表达式由捕获组捕获。
 
@@ -694,7 +694,7 @@ regex_token_iterator(BidirectionalIterator a,
 
 当省略 SubMatches 或当 SubMatches 指定为 0 时，会得到一个迭代器，可遍历所有捕获组索引为 0 的捕获组，即匹配整个正则表达式的子字符串。可选的 Flags 参数指定匹配算法的选项。大多数情况下，可以保留默认值。更多信息，请参阅标准库手册。
 
-\mySubsubsection{21.2.7.}{regex\_token\_iterator 示例}
+\mySubsubsection{21.2.7}{regex\_token\_iterator 示例}
 
 之前 regex\_iterator 示例可以使用 regex\_token\_iterator 重写。在循环体中，不再需要使用 (*iter)[0].str()，只需使用 iter->str()，因为 token 迭代器默认（索引为 0）自动遍历所有捕获组索引为 0 的捕获组。这段代码的输出与之前 regex\_iterator 示例生成相同的输出。
 
@@ -792,7 +792,7 @@ Enter a string to split on ',' and ';' (q=quit): This is, a; test string.
 
 正如从输出中看到的，字符串被拆分在 , 和 ; 之间。移除了 , 和 ; 周围的空格字符，因为标记化迭代器遍历所有不匹配正则表达式的子字符串，并且因为正则表达式匹配周围带有空格的 , 和 ;。
 
-\mySubsubsection{21.2.8.}{regex\_replace()}
+\mySubsubsection{21.2.8}{regex\_replace()}
 
 regex\_replace() 算法需要一个正则表达式和一个格式化字符串，用于替换匹配的子字符串。这个格式化字符串，可以通过使用下表中的转义序列，来引用匹配子字符串的部分。
 

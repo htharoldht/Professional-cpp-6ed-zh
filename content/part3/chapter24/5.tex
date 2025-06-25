@@ -113,7 +113,7 @@ expected<int, variant<OutOfRange, InvalidArgument>>
 如果可以接受没有值，并且不需要为缺失的值提供原因，则使用optional。例如，对于接受可选输入参数的函数或返回类型为可能没有值的函数（如查找相关函数）。
 \end{myNotic}
 
-\mySubsubsection{24.5.1.}{异常、错误返回码和expected}
+\mySubsubsection{24.5.1}{异常、错误返回码和expected}
 
 处理函数中的错误有三种主要方式。函数可以抛出异常，这在第14章中详细讨论过；可以返回错误码；或者返回expected。下表根据std::expected的官方提案P0323R12总结了它们的特点：
 

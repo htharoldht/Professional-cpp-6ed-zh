@@ -24,7 +24,7 @@ move\_iterator: move\_iterator的解引用操作符，自动将值转换为右�
 
 也可以自定义迭代器适配器，本书中没有介绍。相关信息，请参阅附录 B 中列出的标准库手册。
 
-\mySubsubsection{17.3.1.}{插入迭代器}
+\mySubsubsection{17.3.1}{插入迭代器}
 
 myCopy() 函数模板，并不将元素插入到容器中，只是用新元素替换范围中的旧元素。为了使这类算法更有用，标准库提供了三种插入迭代器适配器，可以将元素插入到容器中：insert\_iterator、back\_insert\_iterator 和 front\_insert\_iterator。都针对容器类型参数化，并在构造函数中接收实际容器的引用。提供了必要的迭代器接口，这些适配器可以用作像 myCopy() 这样的算法的目标迭代器。但它们不会替换容器中的元素，而是通过对其容器调用适当的函数来实际插入新元素。
 
@@ -85,7 +85,7 @@ myCopy(cbegin(vectorOne), cend(vectorOne),
     insert_iterator { setOne, begin(setOne) });
 \end{cpp}
 
-\mySubsubsection{17.3.2.}{反向迭代器}
+\mySubsubsection{17.3.2}{反向迭代器}
 
 标准库提供了 std::reverse\_iterator 类模板，通过一个双向或随机访问迭代器在反向方向上遍历。标准库中的每个可逆容器（标准库中除 forward\_list 和无序关联容器之外的所有容器）都提供 reverse\_iterator 类型别名和名为 rbegin() 和 rend() 的成员函数。这些 reverse\_iterator 类型别名是类型 std::reverse\_iterator<T> 的别名，其中 T 等于容器的迭代器类型别名。成员函数 rbegin() 返回一个指向容器最后一个元素的 reverse\_iterator，而 rend() 返回一个指向容器第一个元素之前元素的 reverse\_iterator。对 reverse\_iterator 应用 operator++ 会调用底层容器迭代器的 operator-{}-，反之亦然。例如，遍历一个集合从开始到结束可以这样做：
 
@@ -124,7 +124,7 @@ Found at position 1 going forward.
 Found at position 3 going backward.
 \end{shell}
 
-\mySubsubsection{17.3.3.}{移动迭代器}
+\mySubsubsection{17.3.3}{移动迭代器}
 
 第9章介绍了移动语义，知道了源对象在赋值操作或复制构造之后会销毁的情况下，或者在使用 std::move() 时，可以用来避免不必要的复制。标准库提供了一个迭代器适配器，称为 std::move\_iterator。move\_iterator 的解引用操作符自动将值转换为右值引用，所以值可以不经过复制而移动到新的目的地。在使用移动语义之前，需要确保你的对象支持移动语义，以下 MoveableClass 支持移动语义。详细信息，参见第9章。
 

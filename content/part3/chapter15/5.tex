@@ -174,7 +174,7 @@ for (size_t i { 0 }; i < 20; ++i) {
 
 operator[] 既可以用于设置，也可以用于获取元素，其返回了位置 x 处的元素的引用。这个引用可以用来赋值给那个元素。当 operator[] 用于赋值语句的左侧时，赋值实际上改变了 m\_elements 数组中 x 位置的值。
 
-\mySubsubsection{15.5.1.}{ operator[] 提供只读访问}
+\mySubsubsection{15.5.1}{ operator[] 提供只读访问}
 
 有时 operator[] 返回一个可以作为左值使用的元素是很方便，但并不总是需要这样。能够提供数组元素的只读访问，通过返回一个引用为常量也很有用。为了实现这一点，需要两个 operator[] 重载：一个返回引用为非常量，另一个返回引用为常量：
 
@@ -241,7 +241,7 @@ nullValue 静态变量使用零初始化语法 T\{\} 初始化。这取决于用
 
 \CXXTwentythreeLogo{-40}{-60}
 
-\mySubsubsection{15.5.2.}{多维下标操作符}
+\mySubsubsection{15.5.2}{多维下标操作符}
 
 从 C++23 开始，下标操作符可以支持多维索引。
 
@@ -302,7 +302,7 @@ for (size_t y { 0 }; y < myIntGrid.getHeight(); ++y) {
 \end{shell}
 
 
-\mySubsubsection{15.5.3.}{非整数数组索引}
+\mySubsubsection{15.5.3}{非整数数组索引}
 
 将“索引”模式扩展到集合中提供某种键的自然延伸；vector（或一般情况下的线性数组）是特殊情况，其中“键”就是数组中的位置。operator[] 的参数作为两个域之间的映射：键的域和值的域。可以写一个接受任何类型作为其索引的operator[]，这个类型不需要是整数类型。这在标准库的关联容器中，如 std::map 中得到实现，这些将在第18章中介绍。
 
@@ -310,7 +310,7 @@ for (size_t y { 0 }; y < myIntGrid.getHeight(); ++y) {
 
 \hspace*{\fill}
 
-\mySubsubsection{15.5.4.}{静态下标计算操作符}
+\mySubsubsection{15.5.4}{静态下标计算操作符}
 
 \CXXTwentythreeLogo{-40}{15}
 

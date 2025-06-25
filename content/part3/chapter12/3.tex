@@ -79,13 +79,13 @@ optional<size_t> res { Find(myInt, intArray) };
 C++ 标准库提供了一个更强大的 std::find() 函数模板。有关详细信息，请参阅第 20 章。
 \end{myNotic}
 
-\mySubsubsection{12.3.1.}{函数重载与函数模板}
+\mySubsubsection{12.3.1}{函数重载与函数模板}
 
 想要提供可以与不同数据类型一起工作的函数时，有两种选择：提供函数重载或提供函数模板。应该如何进行选择呢？
 
 编写一个应该与不同数据类型一起工作的函数，且该函数体的所有数据类型都相同，提供一个函数模板。如果函数体对于每种数据类型都不同，就提供函数重载。
 
-\mySubsubsection{12.3.2.}{函数模板的重载}
+\mySubsubsection{12.3.2}{函数模板的重载}
 
 C++ 语言允许像编写类模板特化一样，编写函数模板的特化。但不太需要这样做，这样的函数模板的特化不参与重载解析，可能会有意外的行为。
 
@@ -127,7 +127,7 @@ res = Find<const char*>(word, words, sizeWords);
 
 当编译器的重载解析过程产生两个可能的候选项，一个是函数模板，另一个是非模板函数时，编译器总是倾向于使用非模板函数。
 
-\mySubsubsection{12.3.3.}{函数模板作为类模板的友元}
+\mySubsubsection{12.3.3}{函数模板作为类模板的友元}
 
 想要在类模板中重载操作符时，函数模板非常有用。例如，想要为 Grid 类模板重载加法操作符（operator+），以便能够将两个网格相加。结果将是一个与两个操作数中最小的 Grid 大小相同的 Grid。只有当两个单元格都包含实际值时，相应的单元格才会相加。将 operator+ 作为一个独立的函数模板，定义应该放在 Grid.cppm 模块接口文件中，如下所示。实现使用 <algorithm> 中定义的 std::min()，返回两个参数的最小值：
 
@@ -204,7 +204,7 @@ int main()
 }
 \end{cpp}
 
-\mySubsubsection{12.3.4.}{模板类型参数推导}
+\mySubsubsection{12.3.4}{模板类型参数推导}
 
 编译器根据传递给函数模板的参数，来推导函数模板参数的类型。无法推导的模板参数必须显式指定。
 
@@ -249,7 +249,7 @@ RetType add(const T1& t1, const T2& t2) { return t1 + t2; }
 auto result { add(1, 2) };
 \end{cpp}
 
-\mySubsubsection{12.3.5.}{函数模板的返回类型}
+\mySubsubsection{12.3.5}{函数模板的返回类型}
 
 继续使用 add() 函数模板的例子，是否可以让编译器推导返回值的类型呢？返回类型取决于模板类型参数，如何做到这一点呢？例如，以下函数模板：
 
@@ -345,7 +345,7 @@ decltype(std::declval<T1>() + std::declval<T2>()) add(const T1& t1, const T2& t2
 现在 C++ 支持 auto 返回类型推导和 decltype(auto)，建议使用这些机制，而不是替代函数语法或 declval<>()。
 \end{myNotic}
 
-\mySubsubsection{12.3.6.}{简化函数模板语法}
+\mySubsubsection{12.3.6}{简化函数模板语法}
 
 简化函数模板语法使得编写函数模板更加容易，再次看看上一节中的 add() 函数模板：
 

@@ -1,7 +1,7 @@
 
 C++语言常视为“更好的C语言”或“C语言的超集”，其设计为面向对象的C，所以称之为“带类的C”。后来，C语言的许多令人烦恼和粗糙的问题得到了解决。因为C++是基于C的，若是一个经验丰富的C语言开发者，肯定会在本节中看到的一些熟悉的语法。当然，这两种语言也有不同之处。C23标准规范文档的篇幅不到800页，而C++23标准规范文档的篇幅超过2000页。若你是一名C语言开发者，或是熟悉其他语言(如Java、C\#、Python等)的开发者，请留意自己不熟悉的语法!
 
-\mySubsubsection{1.1.1.}{必不可少的“Hello, World”}
+\mySubsubsection{1.1.1}{必不可少的“Hello, World”}
 
 下面的代码是最简单的C++程序。若使用的是旧版本的C++，import std;std::println()会无法识别，需要使用替代方案（稍后会讨论）。
 
@@ -249,7 +249,7 @@ return 0;
 
 main()中的return语句是可选的。若不写一个，编译器将隐式地添加return 0;。
 
-\mySubsubsection{1.1.2.}{命名空间}
+\mySubsubsection{1.1.2}{命名空间}
 
 命名空间解决了不同代码段之间的命名冲突问题。例如，正在编写一些代码，其中包含一个名为foo()的函数。某天，决定开始使用第三方库，该库也有一个foo()函数，这时编译器无法知道代码中引用的是哪个版本的foo()。若不能更改库的函数名，就要更改自己的函数名，这是一件非常痛苦的事情。
 
@@ -352,7 +352,7 @@ namespace MyLibraries {
 namespace MyFTP = MyLibraries::Networking::FTP;
 \end{cpp}
 
-\mySubsubsection{1.1.3.}{字面量}
+\mySubsubsection{1.1.3}{字面量}
 
 字面量用于在代码中编写数字或字符串，C++支持一些标准字面量。整数可以用以下字面值表示(示例表示相同的数字123):
 
@@ -423,7 +423,7 @@ std::println("Hello, World!");
 
 也可以自定义字面值，这是第15章中一项高级特性。
 
-\mySubsubsection{1.1.4.}{变量}
+\mySubsubsection{1.1.4}{变量}
 
 C++中，变量几乎可以在代码的任何地方声明，并可以在声明之后的当前块内使用。变量可以在未给定值的情况下声明，这些未初始化的变量通常会有一个随机的值，这个值基于那一刻内存中的内容，因此这也是无数错误的根源。C++中，变量在声明时可以选择初始值。下面的代码展示了两种风格的变量声明，使用了表示整数值的int类型：
 
@@ -684,7 +684,7 @@ $1.18$x$10^{-38}$ &
 $3.40$x$10^{38}$ \\ \hline
 \end{longtable}
 
-\mySubsubsection{1.1.5.}{操作符}
+\mySubsubsection{1.1.5}{操作符}
 
 除了改变一个变量，它还有什么用呢?下表显示了C++中常用的操作符，以及使用这些操作符的示例代码。C++中的操作符可以是二进制(对两个表达式进行操作)、一元(对单个表达式进行操作)，甚至三元(对三个表达式进行操作)。C++中只有一种三元操作符，本章后面的“条件操作符”中对其进行了解释。此外，第15章会解释如何自定义类型中，对这些操作符添加支持。
 
@@ -814,7 +814,7 @@ int i { 34 + (8 * 2) + ( (21 / 7) % 2 ) };
 
 这只是一些常用的C++操作符。第15章给出了所有可用操作符的完整概述，包括优先级。
 
-\mySubsubsection{1.1.6.}{枚举}
+\mySubsubsection{1.1.6}{枚举}
 
 整数实际上表示较大的值集合中的一个值——整数序列。枚举是允许自定义序列的类型，这样就可以用该序列中的值声明变量。在国际象棋程序中，可以将每个棋子表示为int，并用常量表示棋子类型。表示类型的整数标记为const，表明永远不会改变。
 
@@ -942,7 +942,7 @@ error C2365: 'ok': redefinition; previous definition was 'data variable'
 使用强类型枚举类枚举，而不是旧式的、无作用域的、类型不安全的枚举类型。
 \end{myWarning}
 
-\mySubsubsection{1.1.7.}{结构体}
+\mySubsubsection{1.1.7}{结构体}
 
 结构体将一个或多个现有类型封装成一个新的类型，其经典示例是数据库。构建一个人事系统来跟踪员工信息，可能希望存储每个员工的姓名首字母、姓氏首字母、员工编号和薪资。以下employee.cppm模块接口文件中展示了一个包含所有这些信息的结构体，这是目前编写的第一个模块。模块接口文件通常具有.cppm扩展名。模块接口文件的第一行是一个模块声明，表明这个文件正在定义一个名为employee的模块。模块需要明确声明它导出了什么，即当这个模块在其他地方导入时，哪些内容可见。通过在结构体前加上export关键字，可以从模块中导出一个类型。
 
@@ -981,7 +981,7 @@ int main()
 }
 \end{cpp}
 
-\mySubsubsection{1.1.8.}{条件语句}
+\mySubsubsection{1.1.8}{条件语句}
 
 条件语句可以根据某个条件是否为true来执行代码，C++中有两种主要的条件语句：if/else语句和switch语句。
 
@@ -1122,7 +1122,7 @@ switch (<initializer>; <expression>) { <body> }
 
 <initializer>中引入的变量仅在<expression>和<body>中可用，其在switch语句外部不可用。
 
-\mySubsubsection{1.1.9.}{条件操作符}
+\mySubsubsection{1.1.9}{条件操作符}
 
 C++有一个接受三个参数的操作符，称为三元操作符。可用作一种简短的条件表达式，即“如果[某事]为真，则[执行动作]，否则[执行其他动作]”。条件操作符由?和:表示。以下代码在变量i大于2时输出“yes”，否则输出“no”：
 
@@ -1138,7 +1138,7 @@ println("{}", i > 2 ? "yes" : "no");
 
 其优势在于它是一个表达式。前面的例子中，条件操作符可用在执行输出的代码中。这种语法方便在，将问号前面的语句当作一个真正的问题。"例如，i大于2吗？若是，结果是'yes'；若不是，结果是'no'。"
 
-\mySubsubsection{1.1.10.}{逻辑操作符}
+\mySubsubsection{1.1.10}{逻辑操作符}
 
 已经看到了一个逻辑操作符，但没有正式的定义，操作符>会比较两个值。若左边的值大于右边的值，结果为真。所有逻辑操作符都遵循这种模式——其结果是true或false。
 
@@ -1195,7 +1195,7 @@ bool result { bool1 && 0 && (i > 7) && !done };
 
 短路可以带来性能上的好处，可以将资源消耗较少的测试放在前面，这样当逻辑短路时，更昂贵的测试不会执行到。指针的上下文中，可以避免在指针无效时执行表达式的某些部分。
 
-\mySubsubsection{1.1.11.}{三向比较操作符}
+\mySubsubsection{1.1.11}{三向比较操作符}
 
 三向比较操作符可以用来确定两个值的顺序，也称为太空船操作符，因为其符号<=>像一艘太空船。使用单个表达式，可以了解一个值是等于、小于还是大于另一个值。因为它必须返回的不仅是false或true，所以不能返回布尔类型，但它返回一个在std命名空间中<compare>定义的类枚举类型。若操作数是整型，结果是一个强序，可以是以下之一：
 
@@ -1265,7 +1265,7 @@ if (is_gt(result)) { println("greater"); }
 if (is_eq(result)) { println("equal"); }
 \end{cpp}
 
-\mySubsubsection{1.1.12.}{函数}
+\mySubsubsection{1.1.12}{函数}
 
 具有一定规模的程序来说，不可能将所有代码放在main()函数内部。为了使程序更容易理解，需要将代码分解成函数。
 
@@ -1370,7 +1370,7 @@ println("{}", addNumbers(1, 2)); // Calls the integer version
 println("{}", addNumbers(1.11, 2.22)); // Calls the double version
 \end{cpp}
 
-\mySubsubsection{1.1.13.}{属性}
+\mySubsubsection{1.1.13}{属性}
 
 属性是一种向源代码中添加可选和/或特定于供应商的信息的机制。C++标准化属性之前，供应商决定如何指定这些信息。例如\_\_attribute\_\_、\_\_declspec等。从C++11开始，通过使用双方括号语法[[attribute]]，对属性有了标准化的支持。
 
@@ -1547,7 +1547,7 @@ int divideBy32(int x)
 
 有了这个假设，编译器就可以省略处理负数的代码，并将除法优化为一条指令，即简单的向右移5位。
 
-\mySubsubsection{1.1.14.}{C风格的数组}
+\mySubsubsection{1.1.14}{C风格的数组}
 
 \begin{myWarning}{WARNING}
 本节介绍了C风格数组，可能会在历史代码中看到它们。C++中，最好避免使用C风格的数组，而是使用标准库功能，例如std::array和vector，这些将在下面的两节中讨论。
@@ -1629,7 +1629,7 @@ ticTacToeBoard[1][1] = 'o';
 
 \myGraphic{0.6}{content/part1/chapter1/images/1.png}{图 1.1}
 
-\mySubsubsection{1.1.15.}{std::array}
+\mySubsubsection{1.1.15}{std::array}
 
 上一节讨论的数组来自C，但在C++中仍然可以工作。C++为固定大小的容器提供了一个特殊类型std::array，定义在<array>中，是对C风格数组的一个浅包装。
 
@@ -1655,7 +1655,7 @@ C风格的数组和std::array有固定的大小，必须在编译时知道，其
 
 若想要一个动态大小的数组，建议使用std::vector。当向vector中添加新元素时，其大小会自动增加。
 
-\mySubsubsection{1.1.16.}{std::vector}
+\mySubsubsection{1.1.16}{std::vector}
 
 C++标准库提供了许多不同的非固定大小的容器，在<vector>中声明的std::vector就是这种容器。vector类用一种更加灵活和安全的机制，可以取代了C风格数组。
 
@@ -1690,7 +1690,7 @@ vector myVector;
 
 要向vector中添加元素，可以使用push\_back()成员函数。可以使用与数组类似的语法访问单个元素，即操作符[]。
 
-\mySubsubsection{1.1.17.}{std::pair}
+\mySubsubsection{1.1.17}{std::pair}
 
 std::pair类模板定义在<utility>头文件中，其将两个可能不同类型的值组合在一起。这些值可以通过 first 和 second 公共数据成员访问。下面是一个例子：
 
@@ -1709,7 +1709,7 @@ pair myPair { 1.23, 5 };
 虽然可以编写一个返回std::pair的函数，但是建议编写一个包含两个值的小型结构体或类，并从函数中返回该结构体或类的实例。返回pair的缺点是调用端代码必须使用first和second来访问这两个值，通过返回一个合适的结构体或类，可以给这两个值赋予更有意义的名称。
 \end{myNotic}
 
-\mySubsubsection{1.1.18.}{std::optional}
+\mySubsubsection{1.1.18}{std::optional}
 
 std::optional定义在<optional>中，保存一个特定类型的值，或者不保存任何值。
 
@@ -1762,7 +1762,7 @@ println("data2.value = {}", data2.value_or(0));
 
 不能在optional中存储引用（将在本章后面讨论），因此optional<T\&>将不起作用，但可以在optional中存储指针。
 
-\mySubsubsection{1.1.19.}{结构化绑定}
+\mySubsubsection{1.1.19}{结构化绑定}
 
 结构化绑定允许声明多个变量，这些变量可以从数组、结构体或对组等数据结构中初始化。
 
@@ -1800,7 +1800,7 @@ println("theInt: {}", theInt);
 
 还可以使用结构化绑定语法创建一组非常量引用或常量引用，通过使用auto\&或 const auto\&代替auto。非常量引用和常量引用都将在本章后面讨论。
 
-\mySubsubsection{1.1.20.}{循环}
+\mySubsubsection{1.1.20}{循环}
 
 计算机非常适合一遍又一遍地做相同的事情。C++提供了四种循环机制：while循环、do/while循环、for循环和基于范围的for循环。
 
@@ -1865,7 +1865,7 @@ for (<initializer>; <range-declaration> : <range-expression>) { <body> }
 for (array arr { 1, 2, 3, 4 }; int i : arr) { println("{}", i); }
 \end{cpp}
 
-\mySubsubsection{1.1.21.}{初始化列表}
+\mySubsubsection{1.1.21}{初始化列表}
 
 初始化列表在<initializer\_list>中定义，使得编写可以接受可变数量参数的函数变得容易。std::initializer\_list类型是一个类模板，要求在尖括号之间指定列表中元素的类型，类似于在vector中指定存储的元素类型。下面的例子展示了如何使用初始化列表：
 
@@ -1896,7 +1896,7 @@ int b { sum({ 10, 20, 30, 40, 50, 60 }) };
 int c { sum({ 1, 2, 3.0 }) };
 \end{cpp}
 
-\mySubsubsection{1.1.22.}{C++中的字符串}
+\mySubsubsection{1.1.22}{C++中的字符串}
 
 C++中有两种处理字符串的方法:
 
@@ -1916,7 +1916,7 @@ println("The value of myString is {}", myString);
 println("The second letter is {}", myString[1]);
 \end{cpp}
 
-\mySubsubsection{1.1.23.}{C++——面向对象的语言}
+\mySubsubsection{1.1.23}{C++——面向对象的语言}
 
 若您是一个C程序员，可能会将本章到目前为止所介绍的特性视为对C语言的有益补充。正如C++这个名字所暗示的，从许多方面来说，这种语言只是“更好的C”。但这种观点忽略了一个问题：与C不同，C++是一种面向对象的语言。
 
@@ -2091,7 +2091,7 @@ println("This ticket will cost ${}", cost);
 
 AirlineTicket示例展示了创建和使用类的通用语法。
 
-\mySubsubsection{1.1.24.}{范围解析}
+\mySubsubsection{1.1.24}{范围解析}
 
 作为C++开发者，需要熟悉作用域的概念，其定义了项目的可见性。程序中的每个名称（包括变量、函数和类名）都在某个作用域内。可以使用命名空间、函数定义、由花括号分隔的块，以及类定义来创建作用域。在for循环和基于范围的for循环的初始化语句中，初始化的变量作用于该for循环，并在该for循环之外不可见。若在if或switch语句的初始化表达式中初始化了变量，则该变量作用于该if或switch语句，并且在该语句之外不可见。尝试访问变量、函数或类时，首先在最近的外围作用域中查找该名称，然后是父作用域，以此类推，直到全局作用域。不在命名空间、函数、花括号分隔的块或类中的名称，都会假定为在全局作用域中。若在全局作用域中没有找到，此时编译器会生成一个未定义符号错误。
 
@@ -2146,7 +2146,7 @@ println("{}", get());
 using namespace NS;
 \end{cpp}
 
-\mySubsubsection{1.1.25.}{统一初始化}
+\mySubsubsection{1.1.25}{统一初始化}
 
 C++11之前，类型的初始化并不总是统一的。以下对圆的定义，一个是结构体，一个是类：
 
@@ -2341,7 +2341,7 @@ Employee anEmployee {
 
 当成员添加到数据结构中时，使用指定初始化，现有的代码可以继续工作，新的数据成员将使用其默认值进行初始化。
 
-\mySubsubsection{1.1.26.}{指针和动态内存}
+\mySubsubsection{1.1.26}{指针和动态内存}
 
 动态内存允许使用编译时不固定大小的数据构建程序，大多数重要的程序都以某种形式使用动态内存。
 
@@ -2498,7 +2498,7 @@ int main()
 func(nullptr);
 \end{cpp}
 
-\mySubsubsection{1.1.27.}{const的用法}
+\mySubsubsection{1.1.27}{const的用法}
 
 C++关键字const有几种不同的使用方式，其用途是相关的，但存在一些细微的差异。const的微妙之处会使其成为面试中的绝佳问题！const关键字是“constant”（常量）的缩写，指定某些内容保持不变。
 
@@ -2661,7 +2661,7 @@ std::string AirlineTicket::getPassengerName() const
 为了遵循const正确性原则，建议将不改变对象的数据成员的成员函数声明为const。与非const成员函数的mutator相比，这些成员函数也称为检查器(inspector)。
 \end{myNotic}
 
-\mySubsubsection{1.1.28.}{引用}
+\mySubsubsection{1.1.28}{引用}
 
 专业的C++代码，包括本书中的大部分代码，大量使用引用。在C++中，引用是另一个变量的别名。对引用的所有修改都会改变其所指向变量的值。可以将引用视为隐式的指针，省去了获取变量地址和解引用指针的麻烦，也可以将引用视为原始变量的另一个名称。可以创建独立的引用变量，在类中使用引用数据成员，将引用作为函数参数接受，并从函数返回引用。
 
@@ -3106,7 +3106,7 @@ auto oddsAndEvens { separateOddsAndEvens(vecUnSplit) };
 避免输出参数。若一个函数需要返回一些东西，只需按值返回即可。
 \end{myNotic}
 
-\mySubsubsection{1.1.29.}{const\_cast()}
+\mySubsubsection{1.1.29}{const\_cast()}
 
 C++中每个变量都有特定的类型。某些情况下，可以将一个类型的变量强制转换为另一个类型的变量。为此，C++提供了五种类型的强制转换：const\_cast()、static\_cast()、reinterpret\_cast()、dynamic\_cast()和std::bit\_cast()。本节讨论const\_cast()。第二种强制转换类型static\_cast()会在本书的前期进行简要介绍，并在第10章中详细讨论，其他的强制转换会在第10章中详细介绍。
 
@@ -3128,7 +3128,7 @@ string str { "C++" };
 const string& constStr { as_const(str) };
 \end{cpp}
 
-\mySubsubsection{1.1.30.}{异常}
+\mySubsubsection{1.1.30}{异常}
 
 C++是一种灵活的语言，允许进行不安全的事情。编译器允许在随机内存地址上乱写或尝试除以零（计算机不太擅长处理无穷大）的代码。C++中的一种可增加安全性的语言特性，就是异常处理。
 
@@ -3168,7 +3168,7 @@ Exception caught: Denominator cannot be 0.
 
 C++处理异常可能会很复杂。为了正确使用异常，需要了解当异常抛出时栈变量的行为，并且需要小心地正确捕获和处理必要的异常。还需要在异常中包含更多关于错误的信息，可以编写自己的异常类型，C++编译器不会强制捕获可能发生的每个异常。若代码没有捕获异常，但抛出了异常，程序将终止。这些关于异常的更复杂方面在第14章中有详细介绍。
 
-\mySubsubsection{1.1.31.}{类型别名}
+\mySubsubsection{1.1.31}{类型别名}
 
 类型别名提供了一个现有类型声明的新名称。可以将类型别名视为为现有类型声明引入同义词的语法，而不创建新类型。以下是将int*类型声明重命名为IntPtr的示例：
 
@@ -3220,7 +3220,7 @@ int main()
 }
 \end{cpp}
 
-\mySubsubsection{1.1.32.}{typedef}
+\mySubsubsection{1.1.32}{typedef}
 
 类型别名是在C++11中引入的。C++11之前，为了实现类似的功能，必须使用typedef，但这种方式更为复杂。这个旧机制在这里解释一下，我们会在历史代码中看到。
 
@@ -3248,7 +3248,7 @@ IntPtr p;
 始终优先选择类型别名，而非typedef。
 \end{myNotic}
 
-\mySubsubsection{1.1.33.}{类型推断}
+\mySubsubsection{1.1.33}{类型推断}
 
 类型推断允许编译器自动推导表达式的类型。有两种关键字用于类型推断：auto和decltype。
 
@@ -3428,7 +3428,7 @@ decltype(foo()) f2 { foo() };
 
 乍一看，decltype似乎并没有什么价值，但它使用在模板的上下文中就十分强大了，会在第12章和第26章中继续介绍。
 
-\mySubsubsection{1.1.34.}{标准库}
+\mySubsubsection{1.1.34}{标准库}
 
 C++附带了一个标准库，其中包含了许多有用的类，这些类可以立即使用。这些类的优点是，不需要重新实现其功能。另一个优点是，标准库中的类已经由成千上万的用户进行了大量测试和验证，以确保其正确性。标准库中的类也经过性能优化，因此使用它们很可能会比自己的实现有更好的性能。
 

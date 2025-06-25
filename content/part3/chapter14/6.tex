@@ -43,7 +43,7 @@ column()          & 包含源代码中的当前列号
 
 提供了一个静态成员函数 current()，该函数基于成员函数调用的源代码位置创建一个 source\_location 实例。
 
-\mySubsubsection{14.6.1.}{日志记录的源位置}
+\mySubsubsection{14.6.1}{日志记录的源位置}
 
 source\_location类在日志记录方面非常有用。以前，日志记录通常涉及编写C风格的宏来自动收集当前文件名、函数名和行号，以便可以包含在日志输出中。现在，有了source\_location，可以编写一个纯C++函数来执行日志记录，并自动收集需要的定位数据。实现这个功能的好方法是定义一个像下面的logMessage()函数。这次，代码前面加了行号，以便更好地解释发生了什么。
 
@@ -76,7 +76,7 @@ logMessage()的第二个参数是一个source\_location，其默认值为source\
 
 第14行确实对应于调用logMessage()的行。函数的确切名称，如这里的void \_\_cdecl foo(void)，具体名称取决于编译器。
 
-\mySubsubsection{14.6.2.}{自定义异常中自动嵌入源位置}
+\mySubsubsection{14.6.2}{自定义异常中自动嵌入源位置}
 
 source\_location在自定义异常中的另一个用途是自动存储异常抛出的位置：
 

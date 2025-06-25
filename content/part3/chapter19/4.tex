@@ -1,7 +1,7 @@
 
 C++标准库提供了std::function和move\_only\_function。两者都是多态函数包装器，是能够包装任何可调用对象（如函数、函数对象或Lambda表达式）的函数对象；后者将在本章后面讨论。
 
-\mySubsubsection{19.4.1.}{std::function}
+\mySubsubsection{19.4.1}{std::function}
 
 std::function 定义在 <functional> 头文件中。std::function 的实例可以用作函数指针，或者用作实现回调的函数参数，并且可以存储、复制、移动，当然也可以执行。函数模板的模板参数与其他模板参数看起来有点不同：
 
@@ -58,7 +58,7 @@ using MatchHandler = function<void(size_t, int, int)>;
 
 这些示例中，std::function 并不是非常有用；但当需要将回调存储为类的数据成员时，std::function 真的非常有用。这是本章末尾的一个练习。
 
-\mySubsubsection{19.4.2.}{std::move\_only\_function}
+\mySubsubsection{19.4.2}{std::move\_only\_function}
 
 \CXXTwentythreeLogo{-40}{15}
 

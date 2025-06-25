@@ -17,7 +17,7 @@ C++翻译单元中的每个名称（包括函数和全局变量）要么有链�
 模块链接：该名称可以从同一模块的翻译单元访问。
 \end{itemize}
 
-\mySubsubsection{11.3.1.}{内部链接}
+\mySubsubsection{11.3.1}{内部链接}
 
 默认情况下，函数和全局变量具有外部链接，也可以通过使用匿名命名空间来指定内部（或静态）链接。有两个源文件：FirstFile.cpp 和 AnotherFile.cpp。FirstFile.cpp的内容如下所示：
 
@@ -86,7 +86,7 @@ void f()
 如果一个翻译单元需要一个仅在翻译单元内部需要的辅助函数，请将其包装在匿名命名空间中以给它内部链接。不鼓励使用 static 关键字进行此操作。
 \end{myWarning}
 
-\mySubsubsection{11.3.2.}{extern 关键字}
+\mySubsubsection{11.3.2}{extern 关键字}
 
 关键字 extern 似乎与 static 对立，指定的名称具有外部链接，并且在某些情况下可以这样使用。const 和 typedef 默认具有内部链接，可以使用 extern 给它们外部链接。然而，extern 有一点复杂。将一个名称指定为 extern 时，编译器将其视为声明，而不是定义。对于变量，编译器不会为其分配空间。必须为变量提供一个不带 extern 关键字的独立定义。例如，这是 AnotherFile.cpp 的内容：
 

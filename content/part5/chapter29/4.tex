@@ -5,7 +5,7 @@
 
 如果使用的是Microsoft Visual C++，已经有了一个很好的内置分析器，这将在本章的后面讨论。如果还没有使用Visual C++，Microsoft提供了一个社区版，它是免费的，适用于学生、开源开发者和个人开发者，用于创建免费和付费应用程序。对于小型组织，最多可免费使用五个用户。另一个非常好的分析工具是IBM的Rational PurifyPlus（\url{www.almtoolbox.com/purify.php}）。还有许多小型免费分析工具可供选择：Very Sleepy（\url{www.codersnotes.com/sleepy}）和Luke Stackwalker（\url{lukestackwalker.sourceforge.net}）是Windows上流行的分析器，Valgrind（valgrind.org）和gprof（GNU分析器，\url{sourceware.org/binutils/docs/gprof}）是Unix/Linux系统上广为人知的分析器，还有许多其他选择。本节将演示两个分析器：Linux上的gprof和Visual C++ 2022自带的分析器。
 
-\mySubsubsection{29.4.1.}{使用gprof分析的示例}
+\mySubsubsection{29.4.1}{使用gprof分析的示例}
 
 分析的力量最好通过一个真实的编码示例来展示。作为免责声明，第一个实现的性能缺陷并不微妙！真正的效率问题可能更复杂，但一个足够长的程序来展示会太长，不适合这本书。
 
@@ -387,7 +387,7 @@ NameDB::NameDB(const string& nameFile)
 
 getNameRank()仍然使用一个循环，该循环遍历映射中的所有元素。一个练习是尝试找到另一种数据结构，以便避免getNameRank()中的线性迭代。
 
-\mySubsubsection{29.4.2.}{使用Visual C++ 2022进行性能分析示例}
+\mySubsubsection{29.4.2}{使用Visual C++ 2022进行性能分析示例}
 
 大多数版本的Microsoft Visual C++ 2022都有一个内置的强大的分析器，这个分析器在本节中简要讨论。VC++分析器具有完整的图形用户界面。
 

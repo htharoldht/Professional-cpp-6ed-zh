@@ -68,7 +68,7 @@ println("{} ", smartCell->getValue());
 很少（如果不是从不）只重载 operator* 或 operator-> 的实现，两个操作符应该一起重载。如果没有提供这两个操作符，会使用户对这个类感到困惑。
 \end{myWarning}
 
-\mySubsubsection{15.7.1.}{实现 operator*}
+\mySubsubsection{15.7.1}{实现 operator*}
 
 当解引用一个指针时，期望能够访问指针所指向的内存。如果那个内存包含一个简单的类型，如 int，就能够直接改变它的值。如果内存包含一个更复杂的类型，如一个对象，应该能够使用点操作符 . 来访问它的数据成员或成员函数。
 
@@ -87,7 +87,7 @@ export template <typename T> class Pointer
 
 operator* 返回底层原始指针所指向的对象或变量的引用。就像重载下标操作符一样，提供两个版本的成员函数（const 和非 const）是有用的，分别返回引用到常量和引用到非常量。
 
-\mySubsubsection{15.7.2.}{实现 operator–>}
+\mySubsubsection{15.7.2}{实现 operator–>}
 
 箭头操作符稍微复杂一些，箭头操作符的结果应该是一个对象的成员或成员函数。这需要实现 operator* 后的 operator; 的等效操作。C++ 不允许重载 operator. 是有原因的：不可能写出一个单一的原型来捕获可能的成员或成员函数。因此，C++ 将 operator-> 视为特殊情况。
 
@@ -118,7 +118,7 @@ export template <typename T> class Pointer
 
 聪明的读者应该发现了 operator* 和 operator-> 的不对称，但看多了就会习惯。
 
-\mySubsubsection{15.7.3.}{什么是 operator.* 和 operator->*？}
+\mySubsubsection{15.7.3}{什么是 operator.* 和 operator->*？}
 
 C++ 中获取类数据成员和成员函数的地址，以获取指针完全合法。没有对象就无法访问非静态数据成员或调用非静态成员函数，类数据成员和成员函数的目的是以每个对象为基础的存在，所以想通过指针调用成员函数或访问数据成员时，必须在该对象的上下文中解引用指针。使用 operator.* 和 ->* 的语法细节将在第19章中介绍(需要知道如何定义函数指针)。
 

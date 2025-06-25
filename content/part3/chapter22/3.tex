@@ -57,7 +57,7 @@ utc\_clock是唯一一个跟踪闰秒的时钟，闰秒是在 UTC 时间与真�
 
 system\_clock 还定义了两个静态帮助成员函数，用于将时间点转换为和从 time\_t C 风格时间表示转换。第一个称为 to\_time\_t()，将给定的时间点转换为 time\_t；第二个，from\_time\_t()，执行相反的转换。time\_t 类型在 <ctime> 中定义。
 
-\mySubsubsection{22.3.1.}{打印当前时间}
+\mySubsubsection{22.3.1}{打印当前时间}
 
 以下示例演示了如何获取当前的 UTC 时间，并以人类可读的格式打印到控制台：
 
@@ -76,7 +76,7 @@ UTC: 2023-07-19 11:38:44,5521944
 UTC: 2023-07-19 11:38:44
 \end{shell}
 
-\mySubsubsection{22.3.2.}{进行计时}
+\mySubsubsection{22.3.2}{进行计时}
 
 要计时代码执行的时间，应该使用不会倒退的时钟，应该使用 steady\_clock。以下代码段中，start 和 end 变量的实际类型是 steady\_clock::time\_point，而 diff 的实际类型是时间段。
 

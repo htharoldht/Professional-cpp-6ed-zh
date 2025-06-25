@@ -1,7 +1,7 @@
 
 对象生命周期涉及三个行为：创建、销毁和赋值。了解对象如何以及何时创建、销毁和赋值，以及如何自定义这些行为非常重要。
 
-\mySubsubsection{8.3.1.}{创建}
+\mySubsubsection{8.3.1}{创建}
 
 对象在声明它们（如果在栈上）时创建，或者当使用智能指针、new或new[]显式分配空间时创建。当一个对象创建时，其所有的嵌入对象也会创建。以下是一个例子：
 
@@ -870,7 +870,7 @@ explicit(true) 就等同于 explicit，但在使用类型特性进行泛型编�
 还有一种最终类型的构造函数，即移动构造函数，是实现移动语义所必需的。移动语义在某些情况下用于提高性能，并在第 9 章中进行了详细介绍。
 \end{myNotic}
 
-\mySubsubsection{8.3.2.}{销毁对象}
+\mySubsubsection{8.3.2}{销毁对象}
 
 当销毁一个对象时，会发生两件事：调用对象的析构函数成员函数，所占用的内存会释放。析构函数是为对象执行清理工作的机会，例如：释放动态分配的内存或关闭文件句柄。如果没有声明析构函数，编译器会生成，递归销毁成员，并删除对象。类的析构函数是一个成员函数，其名称是类名前缀一个波浪号 (~)。析构函数不返回值，也没有参数。以下是一个简单的析构函数示例，只是向标准输出写入一些内容：
 
@@ -929,7 +929,7 @@ int main()
 } // cellPtr2 is NOT destroyed because delete was not called on it.
 \end{cpp}
 
-\mySubsubsection{8.3.3.}{赋值于对象}
+\mySubsubsection{8.3.3}{赋值于对象}
 
 可以在 C++ 中将一个 int 的值赋给另一个 int，也可以将一个对象的值赋给另一个对象。以下代码将 myCell 的值赋给 anotherCell：
 
@@ -1043,7 +1043,7 @@ SpreadsheetCell& operator=(const SpreadsheetCell& rhs) = default;
 SpreadsheetCell& operator=(const SpreadsheetCell& rhs) = delete;
 \end{cpp}
 
-\mySubsubsection{8.3.4.}{编译器生成的复制构造函数和复制赋值操作符}
+\mySubsubsection{8.3.4}{编译器生成的复制构造函数和复制赋值操作符}
 
 C++11 在类具有用户声明的复制赋值操作符或析构函数时，不会生成复制构造函数。如果在这种情况下仍然需要编译器生成的复制构造函数，可以使用=default：
 
@@ -1057,7 +1057,7 @@ C++11 在类具有用户声明的复制赋值操作符或析构函数时，不�
 MyClass& operator=(const MyClass& rhs) = default;
 \end{cpp}
 
-\mySubsubsection{8.3.5.}{复制和赋值}
+\mySubsubsection{8.3.5}{复制和赋值}
 
 有时很难判断对象是通过复制构造函数初始化，还是通过赋值操作符赋值。看起来像声明的东西会使用复制构造函数，而看起来像赋值语句的东西会由赋值操作符处理。来看看以下代码：
 

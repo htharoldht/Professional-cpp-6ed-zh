@@ -1,7 +1,7 @@
 
 现代 C++ 中，可以在编译时执行计算，这可以提高代码的运行时性能。与之相关的有两个重要的关键字：constexpr 和 consteval。
 
-\mySubsubsection{9.4.1.}{constexpr 关键字}
+\mySubsubsection{9.4.1}{constexpr 关键字}
 
 C++ 有常量表达式，这些表达式在编译时进行计算。某些情况下，必须是常量表达式。当定义一个数组时，数组的大小需要是常量表达式，以下代码在 C++ 中无效：
 
@@ -72,7 +72,7 @@ C++23 放宽了对 constexpr 函数的限制：允许 goto 语句、标签（除
 
 \CXXTwentythreeLogo{-40}{20}
 
-\mySubsubsection{9.4.2.}{consteval 关键字}
+\mySubsubsection{9.4.2}{consteval 关键字}
 
 constexpr 关键字指定一个函数可能在编译时执行，但这并不能完全保证，比如下面的 constexpr 函数：
 
@@ -120,7 +120,7 @@ constexpr int g(int i)
 }
 \end{cpp}
 
-\mySubsubsection{9.4.3.}{constexpr 和 consteval 类}
+\mySubsubsection{9.4.3}{constexpr 和 consteval 类}
 
 通过定义一个 constexpr 或 consteval 构造函数，可以创建用户定义类型的常量表达式变量。与 constexpr 函数一样，constexpr 类可能不会在编译时执行，而 consteval 类则保证在编译时执行。
 

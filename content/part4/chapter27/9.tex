@@ -24,7 +24,7 @@ if (myFuture.wait_for(0)) { // Value is available.
 }
 \end{cpp}
 
-\mySubsubsection{27.9.1.}{std::promise 和 std::future}
+\mySubsubsection{27.9.1}{std::promise 和 std::future}
 
 C++提供了std::promise类作为实现promise的一种方式，可以调用set\_value()在promise中存储一个结果，或者调用set\_exception()在promise中存储一个异常。只能在特定的promise上调用set\_value()或set\_exception()一次。如果多次调用，会抛出一个std::future\_error异常。
 
@@ -61,7 +61,7 @@ int main()
 这段代码只是为了演示目的。在新的线程中启动计算，然后阻塞调用future的get()，直到结果计算出来。这听起来像是一个昂贵的函数调用。实际中，可以定期检查是否有可用结果（使用前面讨论的wait\_for()），或者使用同步机制，如条件变量。当结果尚未可用时，可以在等待的同时做其他事情，而不是阻塞。
 \end{myNotic}
 
-\mySubsubsection{27.9.2.}{std::packaged\_task}
+\mySubsubsection{27.9.2}{std::packaged\_task}
 
 std::packaged\_task比显式使用std::promise（如前一节所示）更容易与承诺一起工作。以下代码创建了一个packaged\_task来执行calculateSum()，通过调用get\_future()从packaged\_task中获取future。创建了一个线程，并将packaged\_task移动到线程中。packaged\_task，就像std::promise一样，是可移动的。线程启动后，从检索到的future上阻塞调用get()以获取结果，直到结果可用。
 
@@ -88,7 +88,7 @@ int main()
 }
 \end{cpp}
 
-\mySubsubsection{27.9.3.}{std::async}
+\mySubsubsection{27.9.3}{std::async}
 
 如果想给C++运行时更多控制权，以决定是否创建一个线程来计算某事，可以使用std::async()。它接受一个可调用的对象来执行，并返回一个future，可以使用它来获取结果。async()可以通过两种方式执行一个可调用对象：
 
@@ -144,7 +144,7 @@ async(calculateSum, 39, 3);
 这条语句发生的情况是，async()创建并返回一个future。这个future没有捕获，所以是一个临时对象。因为这是一个临时future，所以在语句结束时调用其析构函数，并且这个析构函数会阻塞到结果可用。
 \end{myWarning}
 
-\mySubsubsection{27.9.4.}{异常处理}
+\mySubsubsection{27.9.4}{异常处理}
 
 使用future的一个优点是，可以在线程之间传输异常。在future上调用get()，要么返回计算的结果，要么重新抛出存储在与之关联的promise中的异常。当使用packaged\_task或async()时，从启动的可调用对象中抛出的异常都会自动存储在promise中。如果直接使用std::promise，可以调用set\_exception()来存储一个异常。以下是使用async()的一个示例：
 
@@ -171,7 +171,7 @@ int main()
 }
 \end{cpp}
 
-\mySubsubsection{27.9.5.}{std::shared\_future}
+\mySubsubsection{27.9.5}{std::shared\_future}
 
 std::future<T>只需要T能够进行移动构造。当在future<T>上调用get()时，结果会从future中移动出来并返回，所以只能在一个future<T>上调用get()一次。
 

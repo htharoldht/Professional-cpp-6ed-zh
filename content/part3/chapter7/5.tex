@@ -21,7 +21,7 @@ C++为智能指针提供了几个极具吸引力的特性。首先，可以使�
 永远不要将资源分配的结果分配给原始指针！无论使用什么资源分配方法，都要立即将资源指针存储在一个智能指针中，无论是 unique\_ptr 还是 shared\_ptr，或者使用其他 RAII 类(RAII 代表资源获取是初始化)。一个 RAII 类可以持有某种资源，并在适当的时候处理其释放，会在第32章中详细讨论。
 \end{myWarning}
 
-\mySubsubsection{7.5.1.}{unique\_ptr}
+\mySubsubsection{7.5.1}{unique\_ptr}
 
 unique\_ptr 对资源具有独占所有权。当 unique\_ptr 销毁或重置时，将自动释放资源。其优点是，内存和资源总是在执行 return 语句或抛出异常时释放。当一个函数有多个 return 语句时，这简化了编码，因为不需要记住在每个 return 语句之前释放资源。
 
@@ -189,7 +189,7 @@ unique_ptr<int, decltype(&my_free)> myIntSmartPtr { my_alloc(42), my_free };
 
 不幸的是，与 unique\_ptr 一起使用自定义删除器的语法有点笨拙。需要指定自定义删除器的类型作为模板类型参数，这应该是一个接受单个指针作为参数并返回 void 的函数指针类型。这个例子中，使用decltype(\&my\_free) ，返回 my\_free() 函数的指针类型。shared\_ptr 使用自定义删除器更容易，接下来的 shared\_ptr 部分将展示如何使用 shared\_ptr 在超出作用域时自动关闭文件。
 
-\mySubsubsection{7.5.2.}{shared\_ptr}
+\mySubsubsection{7.5.2}{shared\_ptr}
 
 有时，几个对象或代码片段需要相同的指针的副本。unique\_ptr 不能复制，因此不适用于这种情况。std::shared\_ptr 是一个支持共享所有权的智能指针，可以复制。但如果有多个 shared\_ptr 实例指向同一个资源，如何知道何时实际释放资源呢？这通过引用计数来解决，这是即将讨论的主题：“引用计数的必要性”。先来看看如何构造和使用 shared\_ptr。
 
@@ -323,7 +323,7 @@ auto aliasing { shared_ptr<int> { foo, &foo->m_data } };
 现代C++编码中，只有在不涉及所有权的情况下才允许使用原始指针！如果涉及到所有权，通常应使用unique\_ptr，如果需要共享所有权，则使用shared\_ptr。此外，应使用make\_unique()和make\_shared()来创建这些智能指针。这样，不需要直接调用new操作符，也不需要delete。
 \end{myWarning}
 
-\mySubsubsection{7.5.3.}{weak\_ptr}
+\mySubsubsection{7.5.3}{weak\_ptr}
 
 C++ 中还有一种与 shared\_ptr 相关的智能指针类，称为 weak\_ptr。weak\_ptr 可以包含一个由 shared\_ptr 管理的资源的引用。weak\_ptr 不拥有资源，所以 shared\_ptr 不会阻止释放资源。weak\_ptr 在 weak\_ptr 销毁（例如超出作用域）时，就不会销毁指向的资源，它可以用来确定关联的 shared\_ptr 是否已经释放了资源。weak\_ptr 的构造函数需要一个 shared\_ptr 或另一个 weak\_ptr 作为参数。要获取 weak\_ptr 中存储的指针，需要将其转换为 shared\_ptr。有两种方法可以做到这一点：
 
@@ -374,13 +374,13 @@ Resource has been freed!
 
 weak\_ptr 也支持 C 风格数组，就像 shared\_ptr 一样。
 
-\mySubsubsection{7.5.4.}{传递给函数}
+\mySubsubsection{7.5.4}{传递给函数}
 
 函数接受指针作为其参数时，当涉及所有权转移或共享时，函数才应接受智能指针。要共享shared\_ptr的所有权，只需按值接受一个shared\_ptr作为参数。要转移unique\_ptr的所有权，只需按值接受一个unique\_ptr作为参数。后者需要使用第9章详细讨论的移动语义。
 
 如果不涉及所有权转移或共享，则函数应简单地具有对底层资源的非const引用或const引用参数，或者nullptr是参数的有效值，则为原始指针。具有诸如const shared\_ptr<T>\&或const unique\_ptr<T>\&的参数类型通常没有太大意义。
 
-\mySubsubsection{7.5.5.}{从函数返回}
+\mySubsubsection{7.5.5}{从函数返回}
 
 标准智能指针 shared\_ptr、unique\_ptr 和 weak\_ptr 可以通过值轻松且高效地从函数返回，这要归功于第 1 章中的强制性和非强制性复制消除，以及第 9 章中讨论的移动语义。重要的是，从函数返回智能指针非常高效。可以创建以下 create() 函数，并在 main() 中使用：
 
@@ -399,7 +399,7 @@ int main()
 
 \end{cpp}
 
-\mySubsubsection{7.5.6.}{enable\_shared\_from\_this}
+\mySubsubsection{7.5.6}{enable\_shared\_from\_this}
 
 从 std::enable\_shared\_from\_this 派生类允许成员函数在对象上调用时，安全地返回指向自己的 shared\_ptr 或 weak\_ptr。如果没有这个基类，返回有效 shared\_ptr 或 weak\_ptr 到这个的方法是添加一个 weak\_ptr 作为类的成员，然后返回它的副本或返回由它构造的 shared\_ptr。enable\_shared\_from\_this 类为从它派生的类添加了以下两个成员函数：
 
@@ -448,7 +448,7 @@ class Foo
 
 \CXXTwentythreeLogo{-40}{-50}
 
-\mySubsubsection{7.5.7.}{智能指针与 C 风格函数的互动性}
+\mySubsubsection{7.5.7}{智能指针与 C 风格函数的互动性}
 
 C风格函数使用返回类型来指示函数，是否正确执行或是否发生错误。由于返回类型已经用于报告错误，因此可使用输出参数来从函数返回其他数据：
 
@@ -476,7 +476,7 @@ my_alloc(42, inout_ptr(myIntSmartPtr));
 
 如果确定传递给 inout\_ptr() 的指针是 nullptr，则可以使用 out\_ptr 代替。
 
-\mySubsubsection{7.5.8.}{已删除的auto\_ptr}
+\mySubsubsection{7.5.8}{已删除的auto\_ptr}
 
 C++11之前的旧标准库中包含了一个基本的智能指针实现，称为 auto\_ptr。不幸的是，auto\_ptr 存在一些严重的问题。其中一个问题是，当在标准库容器（如 vectors）中使用时，不能正确工作。C++11 正式弃用了 auto\_ptr，并且从 C++17 开始，已经完全从标准库中移除，被 unique\_ptr 和 shared\_ptr 所取代。在这里提到 auto\_ptr仅是为了了解它，并确保永远不会使用。
 

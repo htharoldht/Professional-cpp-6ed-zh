@@ -10,7 +10,7 @@
 
 第18章讨论了标准库如何使用适配器模式，来实现像 stack 和 queue 这样的容器，这些容器是基于其他容器，如 deque 和 list 实现的。
 
-\mySubsubsection{33.5.1.}{示例：适配一个 Logger 类}
+\mySubsubsection{33.5.1}{示例：适配一个 Logger 类}
 
 对于这个适配器模式示例，假设一个 Logger 类：
 
@@ -54,7 +54,7 @@ string_view Logger::getLogLevelString(LogLevel level) const
 
 可能想围绕这个基本 Logger 类编写适配器类的一个原因是更改其接口，也许对日志级别不感兴趣，希望只使用一个参数(即实际消息)，来调用 log() 成员函数。可能还希望将接口更改为接受 std::string\_view ，而不是字符串作为 log() 成员函数的参数。
 
-\mySubsubsection{33.5.2.}{适配器的实现}
+\mySubsubsection{33.5.2}{适配器的实现}
 
 实现适配器模式的第一步，是为底层功能定义新的接口。这个新接口称为 IAdaptedLogger：
 
@@ -94,7 +94,7 @@ void AdaptedLogger::log(string_view message)
 }
 \end{cpp}
 
-\mySubsubsection{33.5.3.}{使用适配器}
+\mySubsubsection{33.5.3}{使用适配器}
 
 适配器存在是为了为底层功能提供更合适的接口，所以用法应该是简单和特定的。鉴于前面的实现，以下代码使用新的简化接口进行日志记录：
 

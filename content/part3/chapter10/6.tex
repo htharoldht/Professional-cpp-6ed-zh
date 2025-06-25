@@ -1,7 +1,7 @@
 
 扩展一个类会引发各种问题。可以改变类的哪些特性？不能改变哪些特性？什么是非公有继承？什么是虚基类？这些问题将在这里得到解答。
 
-\mySubsubsection{10.6.1.}{改变覆写成员函数的返回类型}
+\mySubsubsection{10.6.1}{改变覆写成员函数的返回类型}
 
 通常，覆写一个成员函数的原因是改变其实现，有时可能想改变成员函数的其他特性，比如返回类型。
 
@@ -139,7 +139,7 @@ differs and is not covariant from 'Car::getFilledUpPowerSource'
 
 这个例子使用了PowerSource的引用，而不是智能指针。使用shared\_ptr作为返回类型时，更改返回类型不起作用。假设Car::getFilledUpPowerSource()返回shared\_ptr<PowerSource>，因为shared\_ptr是一个类模板，所以不能将ElectricalCar::getFilledUpPowerSource()的返回类型改为shared\_ptr。需要创建了两个shared\_ptr类模板的实例，shared\_ptr<PowerSource>和shared\_ptr<ElectricalPowerSource>。这两个实例化是完全不同的类型，并且彼此没有关系。不能将覆写成员函数的返回类型，更改为完全不同的类型。
 
-\mySubsubsection{10.6.2.}{向派生类添加基类虚成员函数的重载}
+\mySubsubsection{10.6.2}{向派生类添加基类虚成员函数的重载}
 
 可以在派生类中添加基类虚成员函数的新重载，可以在派生类中添加一个虚成员函数的新重载，但继续继承基类的实现。可以使用using声明，明确地在派生类中包含基类成员函数的定义。以下是一个例子：
 
@@ -163,7 +163,7 @@ class Derived : public Base
 在派生类中找到与基类中成员函数同名，但参数列表不同的成员函数很罕见。
 \end{myNotic}
 
-\mySubsubsection{10.6.3.}{继承的构造函数}
+\mySubsubsection{10.6.3}{继承的构造函数}
 
 前一节中，看到了使用using声明来明确包含基类中成员函数定义的示例。这适用于普通类成员函数，也适用于构造函数，允许从基类继承构造函数。看看Base和Derived类的定义：
 
@@ -366,7 +366,7 @@ class Derived : public Base
 };
 \end{cpp}
 
-\mySubsubsection{10.6.4.}{重写成员函数的特殊情况}
+\mySubsubsection{10.6.4}{重写成员函数的特殊情况}
 
 重写一个成员函数时，有几个特殊情况需要注意。本节概述了可能遇到的情况。
 
@@ -705,7 +705,7 @@ ptr->dontTell(); // Error! Attempt to access protected member function.
 修改成员函数访问规格的唯一有用方法是，提供一个对protected成员函数较少限制的访问器。
 \end{myNotic}
 
-\mySubsubsection{10.6.5.}{派生类中的复制构造函数和赋值操作符}
+\mySubsubsection{10.6.5}{派生类中的复制构造函数和赋值操作符}
 
 第9章解释了在类中拥有动态分配内存时，提供复制构造函数和赋值操作符的必要性。定义派生类时，需要谨慎处理复制构造函数和operator=。
 
@@ -750,7 +750,7 @@ Derived& Derived::operator=(const Derived& rhs)
 需要在继承层次结构中具有复制功能时，依赖标准的复制构造函数和复制赋值操作符并不够，所以专业C++开发者常用的一个惯用法是实现多态的clone()成员函数。多态clone()的惯用法将在第12章中介绍。
 \end{myNotic}
 
-\mySubsubsection{10.6.6.}{运行时的类型工具}
+\mySubsubsection{10.6.6}{运行时的类型工具}
 
 相对于其他面向对象语言，C++ 非常注重编译时。覆写成员函数之所以有效，是因为成员函数及其实现间的级别。
 
@@ -837,7 +837,7 @@ typeid 操作符返回的名称是“class Foo”，这个名称取决于编译�
 如果使用 typeid 的目的不是日志记录和调试，请考虑修改你的设计。例如，使用虚成员函数。
 \end{myNotic}
 
-\mySubsubsection{10.6.7.}{非public继承}
+\mySubsubsection{10.6.7}{非public继承}
 
 之前的示例中，父类总是使用public关键字列出。读者们会想知道父类是否可以是private或protected的吗？实际上可以，尽管这两种方式都不像public继承那样常见。如果没有为父类指定访问说明符，对于类来说它是private继承，对于结构体来说是public继承。
 
@@ -849,7 +849,7 @@ typeid 操作符返回的名称是“class Foo”，这个名称取决于编译�
 非public继承很少见，我建议谨慎使用。如果没有其他原因，仅仅是因为大多数开发者对其不熟悉。
 \end{myNotic}
 
-\mySubsubsection{10.6.8.}{虚基类}
+\mySubsubsection{10.6.8}{虚基类}
 
 本章之前的内容中，已经提及了关于歧义基类的问题，当多个父类中每个都具有一个共同的基类时，会出现这种情况，如图 10.12 所示。之前推荐的方法是确保共享的基类没有相同的功能，则其成员函数就永远不会调用，也就没有歧义问题。
 

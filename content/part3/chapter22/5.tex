@@ -3,7 +3,7 @@
 
 标准库提供了相当多的类和函数来处理日期（和时区，稍后讨论）。本文讨论了最重要的类和函数。查阅标准库手册（见附录B）以获得完整内容。
 
-\mySubsubsection{22.5.1.}{创建日期}
+\mySubsubsection{22.5.1}{创建日期}
 
 以下日历类可用于创建日期，都在std::chrono中定义：
 
@@ -130,7 +130,7 @@ year_month_day today2 { floor<days>(system_clock::now()) };
 auto t2 { sys_days { 2020y / June / 22d } + 9h + 35min + 10s };
 \end{cpp}
 
-\mySubsubsection{22.5.2.}{打印日期}
+\mySubsubsection{22.5.2}{打印日期}
 
 日期可以使用熟悉的操作符写入流：
 
@@ -179,7 +179,7 @@ println("Monday in Dutch is {:L%A}", Monday);
 Monday in Dutch is maandag
 \end{shell}
 
-\mySubsubsection{22.5.3.}{日期的算术运算}
+\mySubsubsection{22.5.3}{日期的算术运算}
 
 可以对日期进行算术运算：
 

@@ -11,7 +11,7 @@
 
 先看看概念的语法。
 
-\mySubsubsection{12.5.1.}{语法}
+\mySubsubsection{12.5.1}{语法}
 
 概念定义的语法，即命名约束集的模板：
 
@@ -30,7 +30,7 @@ concept-name<argument-list>
 
 概念表达式会计算为true或false。如果计算为true，可以说给定的模板参数模型化了这个概念。下一节将给出一个例子。
 
-\mySubsubsection{12.5.2.}{约束表达式}
+\mySubsubsection{12.5.2}{约束表达式}
 
 计算为布尔值的常量表达式，可以直接用作概念定义的约束，并且不需要进行类型转换。这里有一个例子：
 
@@ -175,7 +175,7 @@ template <typename T>
 concept IncrementableAndDecrementable = Incrementable<T> && Decrementable<T>;
 \end{cpp}
 
-\mySubsubsection{12.5.3.}{预定义的标准概念}
+\mySubsubsection{12.5.3}{预定义的标准概念}
 
 标准库定义了一系列预定义的概念，超过 100 个，分为几个类别。以下列表仅给出每个类别的几个示例概念，都在<concepts>  和 std 命名空间中定义：
 
@@ -225,7 +225,7 @@ concept DefaultAndCopyConstructible =
 编写语义完整且正确的概念并不简单，可使用可用的标准概念或它们的组合来约束类型。
 \end{myNotic}
 
-\mySubsubsection{12.5.4.}{带类型约束的 auto}
+\mySubsubsection{12.5.4}{带类型约束的 auto}
 
 类型约束可以用于约束使用 auto 类型推导定义的变量，用于约束在函数返回类型时的推导，用于约束简化函数模板和泛型 Lambda 表达式中的参数。使用类型约束与 auto 类型推导，可以使代码更具自文档性。如果违反了约束，还可以导致更好的错误消息，因为错误会指向变量定义，而不是代码中后面某个不支持的运算。
 
@@ -241,7 +241,7 @@ Incrementable auto value1 { 1 };
 Incrementable auto value { "abc"s };
 \end{cpp}
 
-\mySubsubsection{12.5.5.}{类型约束和函数模板}
+\mySubsubsection{12.5.5}{类型约束和函数模板}
 
 有几种语法上不同的方式可以在函数模板中使用类型约束。第一种语法是在函数头中使用 requires 子句，如下所示：
 
@@ -394,7 +394,7 @@ integral<T>
 
 需要注意的是，规范化过程中不会展开类型特征，例如前面使用的 std::is\_arithmetic 特征。如果有一个预定义的概念和一个类型特征可用，应该使用概念而不是类型特征。使用 std::integral 概念，而不是 std::is\_integral 类型特征。
 
-\mySubsubsection{12.5.6.}{类型约束和类模板}
+\mySubsubsection{12.5.6}{类型约束和类模板}
 
 所有类型约束的示例都是使用函数模板，类型约束也可以使用类似的语法与类模板一起使用。作为一个例子，回顾一下本章前面提到的 GameBoard 类模板。以下是对它的一个新定义，要求其模板类型参数是 GamePiece 的派生类：
 
@@ -426,7 +426,7 @@ template <typename T> requires std::derived_from<T, GamePiece>
 class GameBoard : public Grid<T> { /*...*/ };
 \end{cpp}
 
-\mySubsubsection{12.5.7.}{类型约束和类成员函数}
+\mySubsubsection{12.5.7}{类型约束和类成员函数}
 
 可以对类模板的特定成员函数施加约束。GameBoard 类模板的 move() 成员函数，可以进一步约束为要求类型 T 可移动：
 
@@ -454,7 +454,7 @@ void GameBoard<T>::move(std::size_t xSrc, std::size_t ySrc,
 
 本章早些时候介绍过选择性实例化，可以使用这个 GameBoard 类模板与非可移动类型，只要不调用 move() 即可。
 
-\mySubsubsection{12.5.8.}{基于约束类模板的特化与函数模板重载}
+\mySubsubsection{12.5.8}{基于约束类模板的特化与函数模板重载}
 
 可以为类模板编写特化版本，为函数模板编写重载。以便为某些类型提供不同的实现，也可以为满足某些约束的一组类型编写特化或重载。
 
@@ -501,7 +501,7 @@ bool AreEqual(T x, T y, int precision = 2)
 }
 \end{cpp}
 
-\mySubsubsection{12.5.9.}{最佳实践}
+\mySubsubsection{12.5.9}{最佳实践}
 
 概念是一种强大的机制，用于约束类型，提供了很大的灵活性。请记住以下几点：
 

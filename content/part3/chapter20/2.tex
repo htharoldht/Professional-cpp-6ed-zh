@@ -3,7 +3,7 @@
 
 本章的目标不是提供一个参考风格的概述，而是挑选了一些类别并提供示例。当知道如何使用这些算法，其他算法的使用方式也很相近。有关所有算法的完整参考，请查阅标准库手册（见附录 B）。
 
-\mySubsubsection{20.2.1.}{非修改序列算法}
+\mySubsubsection{20.2.1}{非修改序列算法}
 
 非修改序列算法是不修改操作元素序列的算法。这些包括在范围内搜索元素和比较两个范围的一系列算法，还包括一些计数算法。
 
@@ -257,7 +257,7 @@ The lambda expression was called 9 times.
 Found 6 values > 3
 \end{shell}
 
-\mySubsubsection{20.2.2.}{修改序列算法}
+\mySubsubsection{20.2.2}{修改序列算法}
 
 标准库提供了一系列修改序列算法，将元素从一个范围复制到另一个范围、删除元素或反转一个范围内元素的顺序。
 
@@ -668,7 +668,7 @@ println("{:n}", values);
 33
 \end{shell}
 
-\mySubsubsection{20.2.3.}{操作算法}
+\mySubsubsection{20.2.3}{操作算法}
 
 这个类中只有两个算法：for\_each() 和 for\_each\_n()。在范围内对每个元素执行一个回调，for\_each() 或者在范围内对前 n 个元素执行一个回调，for\_each\_n()。如果给定的迭代器类型是非常量，回调可以修改范围内的元素。虽然在这里提到这些算法，但通常使用简单的基于范围的 for 循环更容易且更易读。
 
@@ -762,7 +762,7 @@ for_each_n(cbegin(myMap), 2, [](const auto& p)
     { println("{} -> {}", p.first, p.second); });
 \end{cpp}
 
-\mySubsubsection{20.2.4.}{分区算法}
+\mySubsubsection{20.2.4}{分区算法}
 
 partition\_copy() 从源复制元素到两个不同的目标，每个元素的复制目的地是根据谓词结果选择的，即 true 或 false。partition\_copy() 返回值是一个迭代器对的引用：指向第一个和第二个目标范围中最后一个元素的迭代器。这些返回的迭代器可以与 erase() 一起使用，从两个目标范围中删除多余的元素，就像之前的 copy\_if() 示例一样。以下代码要求用户输入一系列整数，将它们分区到两个目标vector中：一个存偶数，另一个存奇数：
 
@@ -818,7 +818,7 @@ Partitioned result: 22, 44, 33, 55, 11
 
 还有一些其他分区算法可供使用。请参阅第 16 章以获取列表。
 
-\mySubsubsection{20.2.5.}{排序算法}
+\mySubsubsection{20.2.5}{排序算法}
 
 标准库提供了几种排序算法。排序算法重新排列容器的内容，以维护集合中连续元素之间的顺序，只适用于顺序集合。排序对有序关联容器不适用，已经保持元素以排序顺序排列。排序对无序关联容器也不适用，其没有排序的概念。一些容器，如list和forward\_list，提供自己的排序成员函数，这些成员函数可以比通用的排序机制更有效地实现，所以通用的排序算法对于vector、deque、array和 C 风格数组更有用。
 
@@ -861,7 +861,7 @@ sort(begin(values), begin(values) + 5);
 for_each_n(begin(values), 5, [](const auto& element) { print("{} ", element); });
 \end{cpp}
 
-\mySubsubsection{20.2.6.}{二分查找算法}
+\mySubsubsection{20.2.6}{二分查找算法}
 
 有几种搜索算法只能用于排序的序列，或者至少对要搜索的元素进行了分区。这些算法包括 binary\_search()、lower\_bound()、upper\_bound() 和 equal\_range()。关联容器（如 map 和 set）具有等效的成员函数，应该使用这些成员函数。关于如何在这些容器上使用这些成员函数的示例，请参阅第 18 章。
 
@@ -908,7 +908,7 @@ while (true) {
 }
 \end{cpp}
 
-\mySubsubsection{20.2.7.}{set算法}
+\mySubsubsection{20.2.7}{set算法}
 
 set算法适用于任何已排序的范围。includes() 算法实现了标准的子集确定，检查一个已排序的范围，是否完全包含在另一个已排序的范围中。
 
@@ -1040,7 +1040,7 @@ merge(cbegin(vectorOne), cend(vectorOne),
 println("Merged vector: {:n}", vectorMerged);
 \end{cpp}
 
-\mySubsubsection{20.2.8.}{最小/最大算法}
+\mySubsubsection{20.2.8}{最小/最大算法}
 
 min() 和 max() 算法比较两个或多个类型的元素，使用 operator< 或用户提供的二元谓词，分别返回最小或最大元素的有常引用的引用。minmax() 算法返回一个包含两个或多个元素最小值和最大值的元组，这些算法不适用于常见范围。
 
@@ -1123,7 +1123,7 @@ println("{}", clamp(22, 1, 10));
 10
 \end{shell}
 
-\mySubsubsection{20.2.9.}{并行算法}
+\mySubsubsection{20.2.9}{并行算法}
 
 C++ 支持并行执行超过 60 个标准库迭代器基础算法，以提高它们的性能。这些包括 std::for\_each()、all\_of()、copy()、count\_if()、find()、replace()、search()、sort()、transform() 等。
 
@@ -1182,7 +1182,7 @@ sort(execution::par, begin(values), end(values));
 
 算法的并行版本并不保证执行速度会比非并行版本快。当处理少量元素时，并行版本可能实际上会更慢，因为并行化带来了开销。另一个例子是当容器不支持随机访问迭代器时。要决定是否为特定用例使用并行或顺序版本，必须对两者进行基准测试，并选择性能最佳的版本。第 29 章介绍了基准测试。
 
-\mySubsubsection{20.2.10.}{数值处理算法}
+\mySubsubsection{20.2.10}{数值处理算法}
 
 之前有一个数值处理算法的示例：accumulate()，接下来的部分将提供一些更多数值算法的示例。
 
@@ -1273,7 +1273,7 @@ transform\_exclusive\_scan() 和 transform\_inclusive\_scan() 都首先应用一
 
 这些扫描算法（除了 partial\_sum()）可以接受一个可选的执行策略来并行化它们的执行。计算的顺序不确定，而对于 partial\_sum() 和 accumulate()，计算的顺序是从左到右。这也是为什么 partial\_sum() 和 accumulate() 不能并行化的原因。
 
-\mySubsubsection{20.2.11.}{约束算法}
+\mySubsubsection{20.2.11}{约束算法}
 
 大多数算法在 std::ranges 命名空间中都有约束版本。查阅标准手册，了解可用的确切约束算法。
 

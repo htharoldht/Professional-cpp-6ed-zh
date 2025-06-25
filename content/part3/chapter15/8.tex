@@ -65,7 +65,7 @@ string str2 { static_cast<string>(cell) };
 \end{cpp}
 
 
-\mySubsubsection{15.8.1.}{操作符auto}
+\mySubsubsection{15.8.1}{操作符auto}
 
 可以通过指定 auto ，而不是显式指定转换操作符的返回类型，让编译器推断类型。例如，SpreadsheetCell 的 double 转换操作符可以这样写：
 
@@ -81,7 +81,7 @@ operator auto() const { return getValue(); }
 operator const auto&() const { /* ... */ }
 \end{cpp}
 
-\mySubsubsection{15.8.2.}{使用显式转换操作符解决歧义问题}
+\mySubsubsection{15.8.2}{使用显式转换操作符解决歧义问题}
 
 为 SpreadsheetCell 对象编写 double 转换操作符会引入歧义问题：
 
@@ -106,7 +106,7 @@ double d1 { cell + 3.4 }; // 10
 
 正如前一小节讨论的，operator auto 也可以标记为explicit。
 
-\mySubsubsection{15.8.3.}{布尔表达式中的转换}
+\mySubsubsection{15.8.3}{布尔表达式中的转换}
 
 有时，可以在布尔表达式中使用对象。例如，在条件语句中使用指针：
 

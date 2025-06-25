@@ -60,7 +60,7 @@ random\_device引擎易于使用，不需要参数。创建三个伪随机数生
 template<class UIntType, size_t w, size_t n, size_t m, size_t r,
                 UIntType a, size_t u, UIntType d, size_t s,
                 UIntType b, size_t t, UIntType c, size_t l, UIntType f>
-    class mersenne_twister_engine {...}
+    class mersenne_twister_engine {..}
 \end{cpp}
 
 它需要14个参数。linear\_congruential\_engine和subtract\_with\_carry\_engine类模板也需要一些这样的数学参数。标准定义了一些预定义的引擎，一个例子是Mersenne twister的mt19937：
