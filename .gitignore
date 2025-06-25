@@ -3,6 +3,11 @@
 *.log
 *.out
 *.gz
-*toc
+*.toc
 *.listing
 *.synctex(busy)
+*.xdv
+*.fls
+*.fdb_*
+
+_minted/
