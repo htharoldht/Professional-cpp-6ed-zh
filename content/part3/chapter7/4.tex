@@ -67,7 +67,7 @@ class Simple
 {
     public:
     Simple() { m_intPtr = new int{}; }
-    ˜Simple() { delete m_intPtr; }
+    ~Simple() { delete m_intPtr; }
     void setValue(int value) { *m_intPtr = value; }
     private:
     int* m_intPtr;
